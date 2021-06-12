@@ -336,7 +336,10 @@ class User {
 }
 const memberMask = {
     hiddenItems: [
-        'link_hidden'
+        'link_all_match',
+        'link_user_management',
+        'link_agent_management',
+        'link_member_management'
     ],
 };
 const adminMask = {
@@ -344,7 +347,9 @@ const adminMask = {
 };
 const agentMask = {
     hiddenItems: [
-        'link_upcoming_match',
+        'link_all_match',
+        'link_user_management',
+        'link_agent_management'
     ],
 };
 let ApplicationHelper = class ApplicationHelper {
