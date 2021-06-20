@@ -7305,6 +7305,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _constant_app_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constant/app.constant */ "./src/app/constant/app.constant.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _constant_url_constant__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../constant/url.constant */ "./src/app/constant/url.constant.ts");
+
+
 
 
 
@@ -7312,14 +7316,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let BaseServices = class BaseServices {
-    constructor(_http) {
+    constructor(_http, _router) {
         this._http = _http;
+        this._router = _router;
     }
     /*  ..............................calling the Post APi...............................  */
     postRequest(url, param) {
         let body = param;
         let header = { 'Content-Type': 'application/json' };
-        return this._http.post(url, body, { headers: header }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
+        return this._http.post(url, body, { headers: header }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => {
+            if (response.message == 'Auth failed!') {
+                localStorage.clear();
+                this._router.navigate([_constant_url_constant__WEBPACK_IMPORTED_MODULE_7__["UrlConstant"].LOGIN_PATH]);
+            }
+            else {
+                return response;
+            }
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
     }
     postRequestForImage(url, param) {
         return this._http.post(url, param).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
@@ -7329,7 +7342,15 @@ let BaseServices = class BaseServices {
     postRequestWithToken(url, param) {
         let body = param;
         let header = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem(_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__["AppConstant"].USER_TOKEN_KEY)) };
-        return this._http.post(url, body, { headers: header }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
+        return this._http.post(url, body, { headers: header }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => {
+            if (response.message == 'Auth failed!') {
+                localStorage.clear();
+                this._router.navigate([_constant_url_constant__WEBPACK_IMPORTED_MODULE_7__["UrlConstant"].LOGIN_PATH]);
+            }
+            else {
+                return response;
+            }
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
     }
     /* ..............................completed .............................................. */
     /*  ..............................calling the Post APi with Header Token...............................  */
@@ -7343,7 +7364,15 @@ let BaseServices = class BaseServices {
     getRequest(url) {
         let header = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem(_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__["AppConstant"].USER_TOKEN_KEY)) };
         return this._http.get(url, { headers: header })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => response), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((response) => {
+            if (response.message == 'Auth failed!') {
+                localStorage.clear();
+                this._router.navigate([_constant_url_constant__WEBPACK_IMPORTED_MODULE_7__["UrlConstant"].LOGIN_PATH]);
+            }
+            else {
+                return response;
+            }
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((e) => this.handleError(e)));
     }
     /* ...................................completed.............................. */
     /* Handeling the Error Which is comming after http Request Made  */
@@ -7358,7 +7387,8 @@ BaseServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
 ], BaseServices);
 
 

@@ -337,7 +337,6 @@ class User {
 const memberMask = {
     hiddenItems: [
         'link_all_match',
-        'link_user_management',
         'link_agent_management',
         'link_member_management'
     ],
