@@ -48271,7 +48271,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Agent Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Agents</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Agents List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take}}</td>\r\n                  <td>{{li.give}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Agent Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Agents</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Agents List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a\r\n                      style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                      <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                      <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -48364,10 +48364,10 @@ let AgentListComponent = class AgentListComponent {
             }
         });
     }
-    openDialogForUpdateCredit(id, amount) {
+    openDialogForUpdateCredit(id, amount, totalCredit) {
         const dialogRef = this.dialog.open(src_app_games_manager_modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_8__["ClaimModalComponent"], {
             width: '500px',
-            data: { id: id }
+            data: { id: id, availableCredit: parseInt(amount), totalCredit: parseInt(totalCredit) }
         });
         dialogRef.afterClosed().subscribe(obj => {
             if (obj.credit) {
@@ -48408,6 +48408,7 @@ let AgentListComponent = class AgentListComponent {
             if (response.status == true) {
                 this.list = response.result.result;
                 this.pageLimit = response.result.limit;
+                this.userDetail = response.result.userDetail[0];
                 this.totalCount = response.result.count;
                 this.currentPage = response.result.page;
                 this.user_loader = false;
@@ -48453,6 +48454,25 @@ let AgentListComponent = class AgentListComponent {
             }
         });
     }
+    transferCredit(id) {
+        this._confirmation.create('Confirmation !', 'Are you sure you want to transfer amount to this User?', this.settings)
+            .subscribe((ans) => {
+            console.log(ans.resolved);
+            if (ans.resolved == true) {
+                var element = { userId: id };
+                this.subscribe = this._sportMangerServices.transferCredit(element).subscribe((response) => {
+                    console.log(response);
+                    if (response.status == true) {
+                        this._tosterService.success(response.message);
+                        this.getAllMatchesList();
+                    }
+                    else {
+                        this._tosterService.error(response.message);
+                    }
+                });
+            }
+        });
+    }
 };
 AgentListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -48485,7 +48505,7 @@ module.exports = ".full-width{\r\n    width: 80%;\r\n}\r\n.half-width{\r\n    wi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Agent management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Create Agent</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Create Agent</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n          \r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Username</mat-label>\r\n                  <input matInput [(ngModel)]=\"username\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Name</mat-label>\r\n                  <input matInput [(ngModel)]=\"name\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Password</mat-label>\r\n                  <input matInput [(ngModel)]=\"password\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Credit</mat-label>\r\n                  <input matInput [(ngModel)]=\"credit\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>            \r\n            <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"half-width\">\r\n              <mat-label>Position Taking</mat-label>\r\n              <input matInput [(ngModel)]=\"positionTaking\" [disabled]=\"mode\">\r\n              <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n            </mat-form-field>\r\n          </mat-card-content>\r\n          <hr>\r\n          <mat-card-actions>\r\n            <button mat-raised-button color=\"primary\" (click)=\"createAgent()\">Submit</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Agent management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Create Agent</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Create Agent</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n          \r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Username</mat-label>\r\n                  <input matInput [(ngModel)]=\"username\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Name</mat-label>\r\n                  <input matInput [(ngModel)]=\"name\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Password</mat-label>\r\n                  <input matInput [(ngModel)]=\"password\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Credit Limit :  {{creditLimit}}</mat-label>\r\n                  <input matInput [(ngModel)]=\"credit\" (change)=\"checkCredit()\" [disabled]=\"mode\">\r\n\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n                <div style=\"color: red;font-size: small;\" *ngIf=\"exceedCreditLimit\">credit limit is more than available credit</div>\r\n              </div>\r\n            </div>            \r\n            <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"half-width\">\r\n              <mat-label>Position Taking</mat-label>\r\n              <input matInput [(ngModel)]=\"positionTaking\" [disabled]=\"mode\">\r\n              <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n            </mat-form-field>\r\n          </mat-card-content>\r\n          <hr>\r\n          <mat-card-actions>\r\n            <button mat-raised-button color=\"primary\" (click)=\"createAgent()\">Submit</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -48539,10 +48559,21 @@ let CreateAgentComponent = class CreateAgentComponent {
         this.name = '';
         this.username = '';
         this.positionTaking = '';
-        this.credit = '';
+        this.credit = 0;
+        this.creditLimit = 0;
         this.mode = false;
+        this.exceedCreditLimit = false;
     }
     ngOnInit() {
+        this.getCreditLimit();
+    }
+    checkCredit() {
+        if (this.creditLimit > this.credit) {
+            this.exceedCreditLimit = false;
+        }
+        else {
+            this.exceedCreditLimit = true;
+        }
     }
     toggle() {
         if (this.mode == true) {
@@ -48555,20 +48586,40 @@ let CreateAgentComponent = class CreateAgentComponent {
     goBack() {
         this._location.back();
     }
+    getCreditLimit() {
+        this.subscribe = this._sportMangerServices.getCreditLimit().subscribe((response) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
+            if (response.status == true) {
+                this.user_loader = false;
+                this.creditLimit = parseInt(response.result[0].amount);
+            }
+            else {
+                this.user_loader = false;
+                this._tosterService.error(response.message);
+            }
+        }, (error) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(error);
+            this.user_loader = false;
+        });
+    }
     createAgent() {
-        if (this.name.trim() && this.username.trim() && this.password.trim() && this.credit.trim() && this.positionTaking.trim()) {
+        if (this.credit > this.creditLimit) {
+            this.exceedCreditLimit = true;
+        }
+        else if (this.name.trim() && this.username.trim() && this.password.trim() && this.credit && !this.exceedCreditLimit && this.positionTaking.trim()) {
             this.user_loader = true;
             var option = {
                 name: this.name.trim(),
                 username: this.username.trim(),
                 password: this.password.trim(),
-                credit: this.credit.trim(),
+                credit: this.credit,
                 positionTaking: this.positionTaking.trim()
             };
             this.subscribe = this._sportMangerServices.createAgent(option).subscribe((response) => {
                 src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
                 if (response.status == true) {
                     this._tosterService.success(response.message);
+                    this.getCreditLimit();
                     this.user_loader = false;
                 }
                 else {
@@ -48625,7 +48676,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">{{navigatedFrom=='agent'?'Agent Management':'Member Managemnt'}}</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View {{navigatedFrom=='agent'?'Agent':'Member'}} Downline</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View {{username}}'s Downline</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th *ngIf=\"navigatedFrom!='member'\">Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td>{{li.totalCredit}}</td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take}}</td>\r\n                  <td>{{li.give}}</td>\r\n                  <td *ngIf=\"navigatedFrom!='member'\">{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <!-- <li><a routerLink=\"/games-manager/view-match-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li> -->\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">{{navigatedFrom=='agent'?'Agent Management':'Member Managemnt'}}</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View {{navigatedFrom=='agent'?'Agent':'Member'}} Downline</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View {{username}}'s Downline</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th *ngIf=\"navigatedFrom!='member'\">Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td>{{li.totalCredit}}</td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td *ngIf=\"navigatedFrom!='member'\">{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <!-- <li><a routerLink=\"/games-manager/view-match-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li> -->\r\n                        <li *ngIf=\"navigatedFrom!='member'\"><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -48715,6 +48766,18 @@ let ViewDownlineComponent = class ViewDownlineComponent {
         });
         dialogRef.afterClosed().subscribe(obj => {
         });
+    }
+    viewDownline(id, username) {
+        this.username = username;
+        this.downlineId = id;
+        this.navigatedFrom = "member";
+        this.getAllMatchesList();
+        // var routeData = {
+        //   data: {id:id,from:"member",username:username},
+        //   url: "/games-manager/view-downline"
+        // }
+        // this._routeHelper.setData(routeData);
+        // this._router.navigateByUrl("/games-manager/view-downline");
     }
     goBack() {
         this._location.back();
@@ -48813,6 +48876,162 @@ ViewDownlineComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/games-manager/components/configManager/config.component.css":
+/*!*****************************************************************************!*\
+  !*** ./src/app/games-manager/components/configManager/config.component.css ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".full-width{\r\n    width: 80%;\r\n}\r\n.half-width{\r\n    width: 39%;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ2FtZXMtbWFuYWdlci9jb21wb25lbnRzL2NvbmZpZ01hbmFnZXIvY29uZmlnLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxXQUFXO0NBQ2Q7QUFDRDtJQUNJLFdBQVc7Q0FDZCIsImZpbGUiOiJzcmMvYXBwL2dhbWVzLW1hbmFnZXIvY29tcG9uZW50cy9jb25maWdNYW5hZ2VyL2NvbmZpZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmZ1bGwtd2lkdGh7XHJcbiAgICB3aWR0aDogODAlO1xyXG59XHJcbi5oYWxmLXdpZHRoe1xyXG4gICAgd2lkdGg6IDM5JTtcclxufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/components/configManager/config.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/games-manager/components/configManager/config.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Config management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Configuration</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> View Config</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n\r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"calculateWinningNumber\" (color)=\"primary\" (ngModelChange)=\"updateCalculation()\">\r\n                  Calculate Winning Number\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <hr>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Version</mat-label>\r\n                  <input matInput [(ngModel)]=\"version\" >\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <button mat-raised-button color=\"primary\" (click)=\"updateVersion()\">Update Version</button>\r\n              </div>\r\n            </div>\r\n          </mat-card-content>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/components/configManager/config.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/games-manager/components/configManager/config.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: ConfigComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigComponent", function() { return ConfigComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _jaspero_ng2_confirmations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jaspero/ng2-confirmations */ "./node_modules/@jaspero/ng2-confirmations/ng2-confirmations.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
+/* harmony import */ var src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/constant/routeData.constant */ "./src/app/constant/routeData.constant.ts");
+/* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
+
+
+
+
+
+
+
+
+
+let ConfigComponent = class ConfigComponent {
+    constructor(dialog, _confirmation, _router, _routeHelper, _location, _sportMangerServices, _tosterService) {
+        this.dialog = dialog;
+        this._confirmation = _confirmation;
+        this._router = _router;
+        this._routeHelper = _routeHelper;
+        this._location = _location;
+        this._sportMangerServices = _sportMangerServices;
+        this._tosterService = _tosterService;
+        this.settings = {
+            //overlay: true,
+            overlayClickToClose: true,
+            showCloseButton: true,
+            confirmText: 'Yes',
+            declineText: 'No'
+        };
+        this.version = '';
+        this.calculateWinningNumber = false;
+    }
+    ngOnInit() {
+        this.getConfig();
+    }
+    goBack() {
+        this._location.back();
+    }
+    getConfig() {
+        let Obj = {};
+        this.subscribe = this._sportMangerServices.getConfig(Obj).subscribe((response) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
+            if (response.status == true) {
+                this.user_loader = false;
+                this.version = response.result.version;
+                this.calculateWinningNumber = response.result.calculateWinningNumber;
+            }
+            else {
+                this.user_loader = false;
+                this._tosterService.error(response.message);
+            }
+        }, (error) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(error);
+            this.user_loader = false;
+        });
+    }
+    updateVersion() {
+        this._confirmation.create('Confirmation !', 'Are you sure you want to update application version?', this.settings)
+            .subscribe((ans) => {
+            console.log(ans.resolved);
+            if (ans.resolved == true) {
+                var element = { type: 'updateVersion', version: this.version };
+                this.subscribe = this._sportMangerServices.setConfig(element).subscribe((response) => {
+                    console.log(response);
+                    if (response.status == true) {
+                        this._tosterService.success(response.message);
+                        this.getConfig();
+                    }
+                    else {
+                        this._tosterService.error(response.message);
+                    }
+                });
+            }
+        });
+    }
+    updateCalculation() {
+        this._confirmation.create('Confirmation !', 'Are you sure you want to update calculation method?', this.settings)
+            .subscribe((ans) => {
+            console.log(ans.resolved);
+            if (ans.resolved == true) {
+                var element = { type: 'calculateWinningNumber', calculateWinningNumber: this.calculateWinningNumber };
+                this.subscribe = this._sportMangerServices.setConfig(element).subscribe((response) => {
+                    console.log(response);
+                    if (response.status == true) {
+                        this._tosterService.success(response.message);
+                        this.getConfig();
+                    }
+                    else {
+                        this._tosterService.error(response.message);
+                    }
+                });
+            }
+        });
+    }
+    ngOnDestroy() {
+        this.subscribe = undefined;
+    }
+};
+ConfigComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-config',
+        template: __webpack_require__(/*! ./config.component.html */ "./src/app/games-manager/components/configManager/config.component.html"),
+        styles: [__webpack_require__(/*! ./config.component.css */ "./src/app/games-manager/components/configManager/config.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
+        _jaspero_ng2_confirmations__WEBPACK_IMPORTED_MODULE_4__["ConfirmationService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_7__["RouteDataHelper"],
+        _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"],
+        src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_8__["SportsMangerServices"],
+        ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"]])
+], ConfigComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/games-manager/components/dashboard/dashboard.component.css":
 /*!****************************************************************************!*\
   !*** ./src/app/games-manager/components/dashboard/dashboard.component.css ***!
@@ -48831,7 +49050,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid dashboard-content \">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader  -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n      <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n          <div class=\"page-header\">\r\n              <h2 class=\"pageheader-title\">AR Games Dashboard</h2>\r\n              <p class=\"pageheader-text\">Nulla euismod urna eros, sit amet scelerisque torton lectus vel\r\n                  mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>\r\n              <div class=\"page-breadcrumb\">\r\n                  <nav aria-label=\"breadcrumb\">\r\n                      <ol class=\"breadcrumb\">\r\n                          <li class=\"breadcrumb-item\"><a href=\"#\" class=\"breadcrumb-link\">Dashboard</a>\r\n                          </li>\r\n                          <li class=\"breadcrumb-item active\" aria-current=\"page\">Statistics Dashboard\r\n                              </li>\r\n                      </ol>\r\n                  </nav>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader  -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"ecommerce-widget\">\r\n\r\n      <div class=\"row\">\r\n          <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n              <div class=\"card\">\r\n                  <div class=\"card-body\">\r\n                      <h5 class=\"text-muted\">Query Management</h5>\r\n                      <div class=\"metric-value d-inline-block\">\r\n                          <h1 class=\"mb-1\"><i class=\"fas fa-question\"></i></h1>\r\n                      </div>\r\n                  </div>\r\n                  <div id=\"sparkline-revenue\"></div>\r\n              </div>\r\n          </div>\r\n          <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n              <div class=\"card\">\r\n                  <div class=\"card-body\">\r\n                      <h5 class=\"text-muted\">Shape Management</h5>\r\n                      <div class=\"metric-value d-inline-block\">\r\n                          <h1 class=\"mb-1\"><i class=\"fas fa-shapes\"></i></h1>\r\n                      </div>\r\n                  </div>\r\n                  <div id=\"sparkline-revenue2\"></div>\r\n              </div>\r\n          </div>\r\n          <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n              <div class=\"card\">\r\n                  <div class=\"card-body\">\r\n                      <h5 class=\"text-muted\">Profile Management</h5>\r\n                      <div class=\"metric-value d-inline-block\">\r\n                          <h1 class=\"mb-1\"><i class=\"fas fa-male\"></i></h1>\r\n                      </div>\r\n                  </div>\r\n                  <div id=\"sparkline-revenue3\"></div>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid dashboard-content \">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader  -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n      <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n          <div class=\"page-header\">\r\n              <h2 class=\"pageheader-title\">Uncle Casino Dashboard</h2>\r\n              <div class=\"page-breadcrumb\">\r\n                  <nav aria-label=\"breadcrumb\">\r\n                      <ol class=\"breadcrumb\">\r\n                          <li class=\"breadcrumb-item\"><a href=\"#\" class=\"breadcrumb-link\">Dashboard</a>\r\n                          </li>\r\n                          <li class=\"breadcrumb-item active\" aria-current=\"page\">Statistics Dashboard\r\n                              </li>\r\n                      </ol>\r\n                  </nav>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader  -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"ecommerce-widget\">\r\n\r\n      <div class=\"row\">\r\n          <div *ngIf=\"userType==0\" class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n              <div class=\"card\">\r\n                  <div class=\"card-body\">\r\n                      <h5 class=\"text-muted\">Total Agents</h5>\r\n                      <div class=\"metric-value d-inline-block\">\r\n                          <h1 class=\"mb-1\">{{agentCount}}</h1>\r\n                      </div>\r\n                  </div>\r\n                  <div id=\"sparkline-revenue\"></div>\r\n              </div>\r\n          </div>\r\n          <div *ngIf=\"userType==1 || userType==0\" class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n              <div class=\"card\">\r\n                  <div class=\"card-body\">\r\n                      <h5 class=\"text-muted\">Total Member</h5>\r\n                      <div class=\"metric-value d-inline-block\">\r\n                          <h1 class=\"mb-1\">{{memberCount}}</h1>\r\n                      </div>\r\n                  </div>\r\n                  <div id=\"sparkline-revenue2\"></div>\r\n              </div>\r\n          </div>\r\n          <div *ngIf=\"userType==2 || userType==0\" class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n              <div class=\"card\">\r\n                  <div class=\"card-body\">\r\n                      <h5 class=\"text-muted\">Total User</h5>\r\n                      <div class=\"metric-value d-inline-block\">\r\n                          <h1 class=\"mb-1\">{{userCount}}</h1>\r\n                      </div>\r\n                  </div>\r\n                  <div id=\"sparkline-revenue3\"></div>\r\n              </div>\r\n          </div>\r\n          <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n            <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                    <h5 class=\"text-muted\">Credit Limit</h5>\r\n                    <div class=\"metric-value d-inline-block\">\r\n                        <h1 class=\"mb-1\">{{totalCredit}}</h1>\r\n                    </div>\r\n                </div>\r\n                <div id=\"sparkline-revenue3\"></div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n            <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                    <h5 class=\"text-muted\">Available Credit</h5>\r\n                    <div class=\"metric-value d-inline-block\">\r\n                        <h1 class=\"mb-1\">{{availableCredit}}</h1>\r\n                    </div>\r\n                </div>\r\n                <div id=\"sparkline-revenue3\"></div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n            <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                    <h5 class=\"text-muted\">Balance Up</h5>\r\n                    <div class=\"metric-value d-inline-block\">\r\n                        <h1 class=\"mb-1\">{{balanceUp || 0}}</h1>\r\n                    </div>\r\n                </div>\r\n                <div id=\"sparkline-revenue3\"></div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12\">\r\n            <div class=\"card\">\r\n                <div class=\"card-body\">\r\n                    <h5 class=\"text-muted\">Balance Down</h5>\r\n                    <div class=\"metric-value d-inline-block\">\r\n                        <h1 class=\"mb-1\">{{balanceDown || 0}}</h1>\r\n                    </div>\r\n                </div>\r\n                <div id=\"sparkline-revenue3\"></div>\r\n            </div>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -48847,11 +49066,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
+/* harmony import */ var _services_sportsNews_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+
+
 
 
 let DashboardComponent = class DashboardComponent {
-    constructor() { }
+    constructor(_sportMangerServices) {
+        this._sportMangerServices = _sportMangerServices;
+    }
     ngOnInit() {
+        this.getStatistics();
+        this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstant"].USER_TYPE));
+    }
+    getStatistics() {
+        let Obj = {};
+        this._sportMangerServices.getStatistics(Obj).subscribe((response) => {
+            console.log(response);
+            if (response.status == true) {
+                this.agentCount = response.result.agentcount;
+                this.memberCount = response.result.membercount;
+                this.userCount = response.result.usercount;
+                this.totalCredit = response.result.userDetail.totalCredit;
+                this.availableCredit = response.result.userDetail.amount;
+                this.balanceDown = response.result.userDetail.balanceDown;
+                this.balanceUp = response.result.userDetail.balanceUp;
+                // this._tosterService.success(response.message)
+            }
+            else {
+                // this._tosterService.error(response.message)
+            }
+        });
     }
 };
 DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -48860,7 +49106,7 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/games-manager/components/dashboard/dashboard.component.html"),
         styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/games-manager/components/dashboard/dashboard.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_3__["SportsMangerServices"]])
 ], DashboardComponent);
 
 
@@ -49226,7 +49472,7 @@ module.exports = ".full-width{\r\n    width: 80%;\r\n}\r\n.half-width{\r\n    wi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Member management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Create Member</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Create Member</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n          \r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Username</mat-label>\r\n                  <input matInput [(ngModel)]=\"username\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Name</mat-label>\r\n                  <input matInput [(ngModel)]=\"name\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Password</mat-label>\r\n                  <input matInput [(ngModel)]=\"password\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Credit</mat-label>\r\n                  <input matInput [(ngModel)]=\"credit\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>            \r\n            <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"half-width\">\r\n              <mat-label>Position Taking</mat-label>\r\n              <input matInput [(ngModel)]=\"positionTaking\" [disabled]=\"mode\">\r\n              <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n            </mat-form-field>\r\n          </mat-card-content>\r\n          <hr>\r\n          <mat-card-actions>\r\n            <button mat-raised-button color=\"primary\" (click)=\"createAgent()\">Submit</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Member management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Create Member</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Create Member</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n          \r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Username</mat-label>\r\n                  <input matInput [(ngModel)]=\"username\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Name</mat-label>\r\n                  <input matInput [(ngModel)]=\"name\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Password</mat-label>\r\n                  <input matInput [(ngModel)]=\"password\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Credit Limit :  {{creditLimit}}</mat-label>\r\n                  <input matInput [(ngModel)]=\"credit\" (change)=\"checkCredit()\" [disabled]=\"mode\">\r\n\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n                <div style=\"color: red;font-size: small;\" *ngIf=\"exceedCreditLimit\">credit limit is more than available credit</div>\r\n              </div>\r\n            </div>            \r\n            <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"half-width\">\r\n              <mat-label>Position Taking</mat-label>\r\n              <input matInput [(ngModel)]=\"positionTaking\" [disabled]=\"mode\">\r\n              <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n            </mat-form-field>\r\n          </mat-card-content>\r\n          <hr>\r\n          <mat-card-actions>\r\n            <button mat-raised-button color=\"primary\" (click)=\"createAgent()\">Submit</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -49280,10 +49526,37 @@ let CreateMemberComponent = class CreateMemberComponent {
         this.name = '';
         this.username = '';
         this.positionTaking = '';
-        this.credit = '';
+        this.credit = 0;
+        this.creditLimit = 0;
         this.mode = false;
+        this.exceedCreditLimit = false;
     }
     ngOnInit() {
+        this.getCreditLimit();
+    }
+    getCreditLimit() {
+        this.subscribe = this._sportMangerServices.getCreditLimit().subscribe((response) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
+            if (response.status == true) {
+                this.user_loader = false;
+                this.creditLimit = parseInt(response.result[0].amount);
+            }
+            else {
+                this.user_loader = false;
+                this._tosterService.error(response.message);
+            }
+        }, (error) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(error);
+            this.user_loader = false;
+        });
+    }
+    checkCredit() {
+        if (this.creditLimit > this.credit) {
+            this.exceedCreditLimit = false;
+        }
+        else {
+            this.exceedCreditLimit = true;
+        }
     }
     toggle() {
         if (this.mode == true) {
@@ -49297,19 +49570,23 @@ let CreateMemberComponent = class CreateMemberComponent {
         this._location.back();
     }
     createAgent() {
-        if (this.name.trim() && this.username.trim() && this.password.trim() && this.credit.trim() && this.positionTaking.trim()) {
+        if (this.credit > this.creditLimit) {
+            this.exceedCreditLimit = true;
+        }
+        else if (this.name.trim() && this.username.trim() && this.password.trim() && this.credit && !this.exceedCreditLimit && this.positionTaking.trim()) {
             this.user_loader = true;
             var option = {
                 name: this.name.trim(),
                 username: this.username.trim(),
                 password: this.password.trim(),
-                credit: this.credit.trim(),
+                credit: this.credit,
                 positionTaking: this.positionTaking.trim()
             };
             this.subscribe = this._sportMangerServices.createMember(option).subscribe((response) => {
                 src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
                 if (response.status == true) {
                     this._tosterService.success(response.message);
+                    this.getCreditLimit();
                     this.user_loader = false;
                 }
                 else {
@@ -49366,7 +49643,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Member Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Members</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Members List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Members Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take}}</td>\r\n                  <td>{{li.give}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Downline\"><i class=\"far fa-eye\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Member Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Members</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">      \r\n            <div class=\"col\"> <h4>Username : {{userDetail.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userDetail.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" >\r\n            <div class=\"col\"> <h4>Credit Limit : {{userDetail.totalCredit}}</h4></div>\r\n            <div class=\"col\"> <h4>Available Credit : {{userDetail.amount}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Members List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Members Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                          <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit(li._id)\" class=\"view\"\r\n                            data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -49471,10 +49748,10 @@ let ViewMemberComponent = class ViewMemberComponent {
             }
         });
     }
-    openDialogForUpdateCredit(id, amount) {
+    openDialogForUpdateCredit(id, amount, totalCredit) {
         const dialogRef = this.dialog.open(src_app_games_manager_modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_8__["ClaimModalComponent"], {
             width: '500px',
-            data: { id: id }
+            data: { id: id, availableCredit: parseInt(amount), totalCredit: parseInt(totalCredit) }
         });
         dialogRef.afterClosed().subscribe(obj => {
             if (obj.credit) {
@@ -49516,6 +49793,7 @@ let ViewMemberComponent = class ViewMemberComponent {
                 this.list = response.result.result;
                 this.pageLimit = response.result.limit;
                 this.totalCount = response.result.count;
+                this.userDetail = response.result.userDetail[0];
                 this.currentPage = response.result.page;
                 this.user_loader = false;
             }
@@ -49560,6 +49838,25 @@ let ViewMemberComponent = class ViewMemberComponent {
             }
         });
     }
+    transferCredit(id) {
+        this._confirmation.create('Confirmation !', 'Are you sure you want to transfer amount to this User?', this.settings)
+            .subscribe((ans) => {
+            console.log(ans.resolved);
+            if (ans.resolved == true) {
+                var element = { userId: id };
+                this.subscribe = this._sportMangerServices.transferCredit(element).subscribe((response) => {
+                    console.log(response);
+                    if (response.status == true) {
+                        this._tosterService.success(response.message);
+                        this.getAllMatchesList();
+                    }
+                    else {
+                        this._tosterService.error(response.message);
+                    }
+                });
+            }
+        });
+    }
 };
 ViewMemberComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -49569,6 +49866,147 @@ ViewMemberComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _jaspero_ng2_confirmations__WEBPACK_IMPORTED_MODULE_4__["ConfirmationService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_7__["RouteDataHelper"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["Location"], src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__["SportsMangerServices"], ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"]])
 ], ViewMemberComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/games-manager/components/transfer/transfer-list.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/games-manager/components/transfer/transfer-list.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dhbWVzLW1hbmFnZXIvY29tcG9uZW50cy90cmFuc2Zlci90cmFuc2Zlci1saXN0LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/components/transfer/transfer-list.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/games-manager/components/transfer/transfer-list.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Transfer Statement</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Transfer Statements</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Transfer List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Type</th>\r\n                  <th>Amount</th>\r\n                  <th>Created Date</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.type}}</td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/components/transfer/transfer-list.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/games-manager/components/transfer/transfer-list.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: TransferListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TransferListComponent", function() { return TransferListComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _jaspero_ng2_confirmations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @jaspero/ng2-confirmations */ "./node_modules/@jaspero/ng2-confirmations/ng2-confirmations.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
+/* harmony import */ var src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/constant/routeData.constant */ "./src/app/constant/routeData.constant.ts");
+/* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
+
+
+
+
+
+
+
+
+
+let TransferListComponent = class TransferListComponent {
+    constructor(dialog, _confirmation, _router, _routeHelper, _location, _sportMangerServices, _tosterService) {
+        this.dialog = dialog;
+        this._confirmation = _confirmation;
+        this._router = _router;
+        this._routeHelper = _routeHelper;
+        this._location = _location;
+        this._sportMangerServices = _sportMangerServices;
+        this._tosterService = _tosterService;
+        this.selectedValue = "";
+        this.options = [
+            { value: '', viewValue: 'NONE' },
+            { value: 'last10day', viewValue: 'Last 10 Days' },
+            { value: 'last2Week', viewValue: 'Last 2 Week' },
+            { value: 'lastMonth', viewValue: 'Last Month' },
+        ];
+        this.list = [];
+        this.settings = {
+            //overlay: true,
+            overlayClickToClose: true,
+            showCloseButton: true,
+            confirmText: 'Yes',
+            declineText: 'No'
+        };
+        this.search = "";
+        this.checkSearch = false;
+        this.sortBy = "";
+        this.sortByType = "";
+        this.searchObj = null;
+    }
+    ngOnInit() {
+        this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].USER_TYPE));
+        this.pageNo = 1;
+        this.getAllMatchesList();
+    }
+    goBack() {
+        this._location.back();
+    }
+    getAllMatchesList() {
+        this.user_loader = true;
+        let options = {
+            page: this.pageNo,
+            checkFilter: this.selectedValue,
+            search: this.search
+        };
+        this._sportMangerServices.getTransferList(options).subscribe((response) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
+            if (response.status == true) {
+                this.list = response.result.result;
+                this.pageLimit = response.result.limit;
+                this.userDetail = response.result.userDetail[0];
+                this.totalCount = response.result.count;
+                this.currentPage = response.result.page;
+                this.user_loader = false;
+            }
+            else {
+                this.user_loader = false;
+                this._tosterService.error('error', src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].FAILED_MESSAGE);
+            }
+        }, (error) => {
+            this.user_loader = false;
+            this._tosterService.error(error, src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].FAILED_MESSAGE);
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(error);
+        });
+    }
+    /* ...........................completed ........................................ */
+    /* .......................Pagination ................................ */
+    pageChanged(event) {
+        this.pageNo = event;
+        this.getAllMatchesList();
+    }
+    /* ...........................completed ........................................ */
+    ngOnDestroy() {
+        this.subscribe = undefined;
+    }
+};
+TransferListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-transfer-list',
+        template: __webpack_require__(/*! ./transfer-list.component.html */ "./src/app/games-manager/components/transfer/transfer-list.component.html"),
+        styles: [__webpack_require__(/*! ./transfer-list.component.css */ "./src/app/games-manager/components/transfer/transfer-list.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _jaspero_ng2_confirmations__WEBPACK_IMPORTED_MODULE_4__["ConfirmationService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_7__["RouteDataHelper"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"], src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_8__["SportsMangerServices"], ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"]])
+], TransferListComponent);
 
 
 
@@ -49592,7 +50030,7 @@ module.exports = ".full-width{\r\n    width: 80%;\r\n}\r\n.half-width{\r\n    wi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">User management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Create User</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Create User</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n\r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Username</mat-label>\r\n                  <input matInput [(ngModel)]=\"username\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Name</mat-label>\r\n                  <input matInput [(ngModel)]=\"name\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Password</mat-label>\r\n                  <input matInput [(ngModel)]=\"password\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Credit</mat-label>\r\n                  <input matInput [(ngModel)]=\"credit\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </mat-card-content>\r\n          <hr>\r\n          <mat-card-actions>\r\n            <button mat-raised-button color=\"primary\" (click)=\"createAgent()\">Submit</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">User management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">Create User</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Create User</h4>\r\n        </div>\r\n\r\n        <mat-card>\r\n\r\n          <br>\r\n          <mat-card-content>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Username</mat-label>\r\n                  <input matInput [(ngModel)]=\"username\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Name</mat-label>\r\n                  <input matInput [(ngModel)]=\"name\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Password</mat-label>\r\n                  <input matInput [(ngModel)]=\"password\" [disabled]=\"mode\">\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n              </div>\r\n              <div class=\"col\">\r\n                <!-- <div>Credit Limit : {{creditLimit}}</div> -->\r\n                <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n                  <mat-label>Credit Limit :  {{creditLimit}}</mat-label>\r\n                  <input matInput [(ngModel)]=\"credit\" (change)=\"checkCredit()\" [disabled]=\"mode\">\r\n\r\n                  <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n                </mat-form-field>\r\n                <div style=\"color: red;font-size: small;\" *ngIf=\"exceedCreditLimit\">credit limit is more than available credit</div>\r\n              </div>\r\n            </div>\r\n          </mat-card-content>\r\n          <hr>\r\n          <mat-card-actions>\r\n            <button mat-raised-button color=\"primary\" (click)=\"createAgent()\">Submit</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n\r\n        <!-- ///////////////////////////////////////////// -->\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -49646,10 +50084,13 @@ let CreateUserComponent = class CreateUserComponent {
         this.name = '';
         this.username = '';
         this.positionTaking = '';
-        this.credit = '';
+        this.credit = 0;
+        this.creditLimit = 0;
         this.mode = false;
+        this.exceedCreditLimit = false;
     }
     ngOnInit() {
+        this.getCreditLimit();
     }
     toggle() {
         if (this.mode == true) {
@@ -49662,19 +50103,47 @@ let CreateUserComponent = class CreateUserComponent {
     goBack() {
         this._location.back();
     }
+    checkCredit() {
+        if (this.creditLimit > this.credit) {
+            this.exceedCreditLimit = false;
+        }
+        else {
+            this.exceedCreditLimit = true;
+        }
+    }
+    getCreditLimit() {
+        this.subscribe = this._sportMangerServices.getCreditLimit().subscribe((response) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
+            if (response.status == true) {
+                this.user_loader = false;
+                this.creditLimit = parseInt(response.result[0].amount);
+            }
+            else {
+                this.user_loader = false;
+                this._tosterService.error(response.message);
+            }
+        }, (error) => {
+            src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(error);
+            this.user_loader = false;
+        });
+    }
     createAgent() {
-        if (this.name.trim() && this.username.trim() && this.password.trim() && this.credit.trim()) {
+        if (this.credit > this.creditLimit) {
+            this.exceedCreditLimit = true;
+        }
+        else if (this.name.trim() && this.username.trim() && this.password.trim() && this.credit && !this.exceedCreditLimit) {
             this.user_loader = true;
             var option = {
                 name: this.name.trim(),
                 username: this.username.trim(),
                 password: this.password.trim(),
-                credit: this.credit.trim(),
+                credit: this.credit,
             };
             this.subscribe = this._sportMangerServices.createUser(option).subscribe((response) => {
                 src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].print(response);
                 if (response.status == true) {
                     this._tosterService.success(response.message);
+                    this.getCreditLimit();
                     this.user_loader = false;
                 }
                 else {
@@ -49935,7 +50404,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">User Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Users</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Users List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Users Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take}}</td>\r\n                  <td>{{li.give}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-user-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">User Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Users</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">      \r\n            <div class=\"col\"> <h4>Username : {{userDetail.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userDetail.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" >\r\n            <div class=\"col\"> <h4>Credit Limit : {{userDetail.totalCredit}}</h4></div>\r\n            <div class=\"col\"> <h4>Available Credit : {{userDetail.amount}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Users List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Users Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-user-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                          <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit(li._id)\" class=\"view\"\r\n                            data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -50032,10 +50501,10 @@ let ViewUserComponent = class ViewUserComponent {
             }
         });
     }
-    openDialogForUpdateCredit(id, amount) {
+    openDialogForUpdateCredit(id, amount, totalCredit) {
         const dialogRef = this.dialog.open(src_app_games_manager_modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_8__["ClaimModalComponent"], {
             width: '500px',
-            data: { id: id }
+            data: { id: id, availableCredit: parseInt(amount), totalCredit: parseInt(totalCredit) }
         });
         dialogRef.afterClosed().subscribe(obj => {
             if (obj.credit) {
@@ -50076,6 +50545,7 @@ let ViewUserComponent = class ViewUserComponent {
                 this.pageLimit = response.result.limit;
                 this.totalCount = response.result.count;
                 this.currentPage = response.result.page;
+                this.userDetail = response.result.userDetail[0];
                 this.user_loader = false;
             }
             else {
@@ -50110,6 +50580,25 @@ let ViewUserComponent = class ViewUserComponent {
                     element['isUser'] = true;
                 }
                 this.subscribe = this._sportMangerServices.updateActiveStatus(element).subscribe((response) => {
+                    console.log(response);
+                    if (response.status == true) {
+                        this._tosterService.success(response.message);
+                        this.getAllMatchesList();
+                    }
+                    else {
+                        this._tosterService.error(response.message);
+                    }
+                });
+            }
+        });
+    }
+    transferCredit(id) {
+        this._confirmation.create('Confirmation !', 'Are you sure you want to transfer amount to this User?', this.settings)
+            .subscribe((ans) => {
+            console.log(ans.resolved);
+            if (ans.resolved == true) {
+                var element = { userId: id };
+                this.subscribe = this._sportMangerServices.transferCredit(element).subscribe((response) => {
                     console.log(response);
                     if (response.status == true) {
                         this._tosterService.success(response.message);
@@ -50231,6 +50720,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_user_create_user_create_user_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/user/create-user/create-user.component */ "./src/app/games-manager/components/user/create-user/create-user.component.ts");
 /* harmony import */ var _components_user_view_user_view_user_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/user/view-user/view-user.component */ "./src/app/games-manager/components/user/view-user/view-user.component.ts");
 /* harmony import */ var _components_user_view_user_detail_view_user_detail_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/user/view-user-detail/view-user-detail.component */ "./src/app/games-manager/components/user/view-user-detail/view-user-detail.component.ts");
+/* harmony import */ var _components_transfer_transfer_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/transfer/transfer-list.component */ "./src/app/games-manager/components/transfer/transfer-list.component.ts");
+/* harmony import */ var _components_configManager_config_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/configManager/config.component */ "./src/app/games-manager/components/configManager/config.component.ts");
+
+
 
 
 
@@ -50278,6 +50771,8 @@ const routes = [
             { path: 'member-list', component: _components_member_view_member_view_member_component__WEBPACK_IMPORTED_MODULE_27__["ViewMemberComponent"] },
             { path: 'user-list', component: _components_user_view_user_view_user_component__WEBPACK_IMPORTED_MODULE_29__["ViewUserComponent"] },
             { path: 'view-downline', component: _components_common_view_downline_view_downline_component__WEBPACK_IMPORTED_MODULE_25__["ViewDownlineComponent"] },
+            { path: 'transfer-list', component: _components_transfer_transfer_list_component__WEBPACK_IMPORTED_MODULE_31__["TransferListComponent"] },
+            { path: 'config', component: _components_configManager_config_component__WEBPACK_IMPORTED_MODULE_32__["ConfigComponent"] },
         ]
     },
 ];
@@ -50287,6 +50782,7 @@ GamesManagerModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [_games_manager_component__WEBPACK_IMPORTED_MODULE_3__["GamesManagerComponent"], _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"], _modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_16__["AllocateModalComponent"],
             _modals_set_unset_modal_set_unset_modal_component__WEBPACK_IMPORTED_MODULE_20__["SetUnsetModalComponent"],
+            _components_configManager_config_component__WEBPACK_IMPORTED_MODULE_32__["ConfigComponent"],
             _modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_17__["ClaimModalComponent"],
             _modals_priority_modal_priority_modal_component__WEBPACK_IMPORTED_MODULE_18__["PriorityModalComponent"],
             _modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_19__["EditModalComponent"],
@@ -50299,7 +50795,8 @@ GamesManagerModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_member_view_member_view_member_component__WEBPACK_IMPORTED_MODULE_27__["ViewMemberComponent"],
             _components_user_create_user_create_user_component__WEBPACK_IMPORTED_MODULE_28__["CreateUserComponent"],
             _components_user_view_user_view_user_component__WEBPACK_IMPORTED_MODULE_29__["ViewUserComponent"],
-            _components_user_view_user_detail_view_user_detail_component__WEBPACK_IMPORTED_MODULE_30__["ViewUserDetailComponent"]],
+            _components_user_view_user_detail_view_user_detail_component__WEBPACK_IMPORTED_MODULE_30__["ViewUserDetailComponent"],
+            _components_transfer_transfer_list_component__WEBPACK_IMPORTED_MODULE_31__["TransferListComponent"]],
         imports: [
             ng2_ckeditor__WEBPACK_IMPORTED_MODULE_5__["CKEditorModule"],
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -50487,7 +50984,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h2 mat-dialog-title class=\"title-color\">Update Credit</h2>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span class=\"icons-card float-right\">\r\n      <i class=\"fa fa-times icon-cancel\" title=\"Cancel\" (click)=\"closeModal()\" aria-hidden=\"true\"></i>\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n<mat-divider></mat-divider>\r\n\r\n<br>\r\n<mat-dialog-content>\r\n  <div class=\"row\">\r\n    <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n      <mat-label>Add Credit</mat-label>\r\n      <input matInput [(ngModel)]=\"credit\">\r\n    </mat-form-field>\r\n  </div>\r\n</mat-dialog-content>\r\n<mat-divider></mat-divider>\r\n\r\n<mat-dialog-actions class=\"row\" style=\"\r\njustify-content: center;\r\n\">\r\n  <button mat-raised-button color=\"primary\" (click)=\"saveAndClose()\">Submit</button>\r\n</mat-dialog-actions>"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h2 mat-dialog-title class=\"title-color\">Update Credit</h2>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span class=\"icons-card float-right\">\r\n      <i class=\"fa fa-times icon-cancel\" title=\"Cancel\" (click)=\"closeModal()\" aria-hidden=\"true\"></i>\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n<mat-divider></mat-divider>\r\n\r\n<br>\r\n<mat-dialog-content>\r\n  <!-- <div *ngIf=\"!decreaseCredit\" class=\"row\">\r\n    <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n      <mat-label>Credit Limit :  {{creditLimit}}</mat-label>\r\n      <input matInput [(ngModel)]=\"credit\" (change)=\"checkCredit()\" >\r\n    </mat-form-field>\r\n  </div> -->\r\n  <div class=\"row\">\r\n    <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n      <mat-label>{{availableCredit}} < credit > {{creditLimit}}</mat-label>\r\n      <input matInput [(ngModel)]=\"credit\" (change)=\"checkCredit()\" >\r\n      <!-- <mat-icon (click)=\"toggle()\" matSuffix>mode_edit</mat-icon> -->\r\n    </mat-form-field>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div style=\"color: red;font-size: small;\" *ngIf=\"exceedCreditLimit\">credit cannot be more than {{creditLimit}} or smaller than {{availableCredit}}</div>\r\n  </div>\r\n</mat-dialog-content>\r\n<mat-divider></mat-divider>\r\n\r\n<mat-dialog-actions class=\"row\" style=\"\r\njustify-content: center;\r\n\">\r\n  <button mat-raised-button color=\"primary\" (click)=\"saveAndClose()\">Submit</button>\r\n</mat-dialog-actions>"
 
 /***/ }),
 
@@ -50515,34 +51012,42 @@ let ClaimModalComponent = class ClaimModalComponent {
         this.dialogRef = dialogRef;
         this.data = data;
         this.obj = {
-            credit: "",
+            credit: 0,
             id: "",
+            type: 'increase',
+            amount: 0
         };
-        this.credit = "";
+        this.credit = 0;
+        this.creditLimit = 0;
+        this.totalCredit = 0;
+        this.availableCredit = 0;
+        this.exceedCreditLimit = false;
+        this.decreaseCredit = false;
     }
     ngOnInit() {
+        this.getCreditLimit();
+        this.availableCredit = parseInt(this.data.totalCredit) - parseInt(this.data.availableCredit);
+        this.credit = this.data.totalCredit;
     }
-    getAdminUser() {
-        // this._sportMangerServices.getAllAdminUsers().subscribe((response: any) => {
-        //   AppConstant.print(response)
-        //   if (response.status == true) {
-        //     this.userList = response.result;
-        //     this.userList.map((x)=>{
-        //       if(x.userType=='3'){
-        //         this.userListForWriter.push(x) ;
-        //       }
-        //     });
-        //     this.userList.map((x)=>{
-        //       if(x.userType=='2'){
-        //         this.userListForDesigner.push(x) ;
-        //       }
-        //     });
-        //   } else {
-        //     this.userList = [];
-        //   }
-        // }, (error) => {
-        //   AppConstant.print(error)
-        // });
+    getCreditLimit() {
+        this._sportMangerServices.getCreditLimit().subscribe((response) => {
+            if (response.status == true) {
+                this.creditLimit = parseInt(response.result[0].amount) + parseInt(this.data.totalCredit);
+            }
+            else {
+            }
+        }, (error) => {
+            // AppConstant.print(error)
+            // this.user_loader = false;
+        });
+    }
+    checkCredit() {
+        if (this.availableCredit < this.credit && this.credit < this.creditLimit) {
+            this.exceedCreditLimit = false;
+        }
+        else {
+            this.exceedCreditLimit = true;
+        }
     }
     onNoClick() {
         this.dialogRef.close();
@@ -50551,10 +51056,15 @@ let ClaimModalComponent = class ClaimModalComponent {
         this.dialogRef.close();
     }
     saveAndClose() {
-        if (this.credit.trim()) {
+        if (this.availableCredit < this.credit && this.credit < this.creditLimit) {
             this.obj.credit = this.credit;
             this.obj.id = this.data.id;
+            this.obj.type = this.credit > this.data.totalCredit ? 'increase' : 'decrease';
+            this.obj.amount = this.credit > this.data.totalCredit ? this.credit - this.data.totalCredit : this.data.totalCredit - this.credit;
             this.dialogRef.close(this.obj);
+        }
+        else {
+            this.exceedCreditLimit = true;
         }
     }
 };
@@ -50835,8 +51345,26 @@ let SportsMangerServices = class SportsMangerServices {
     updatePassword(Obj) {
         return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/updatePassword`, Obj);
     }
-    getAllUserGroup() {
-        return this._basesServices.getRequest(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/getAllUserGroup`);
+    changePasswordForAdmin(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/changePasswordForAdmin`, Obj);
+    }
+    getStatistics(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/getStatistics`, Obj);
+    }
+    transferCredit(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/transferCredit`, Obj);
+    }
+    getConfig(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/getConfig`, Obj);
+    }
+    setConfig(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/setConfig`, Obj);
+    }
+    getTransferList(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/getTransferList`, Obj);
+    }
+    getCreditLimit() {
+        return this._basesServices.getRequest(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/getCreditLimit`);
     }
 };
 SportsMangerServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -50938,29 +51466,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TopmenuComponent", function() { return TopmenuComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
-/* harmony import */ var src_app_constant_url_constant__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/constant/url.constant */ "./src/app/constant/url.constant.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
+/* harmony import */ var src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/constant/routeData.constant */ "./src/app/constant/routeData.constant.ts");
+/* harmony import */ var src_app_constant_url_constant__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/constant/url.constant */ "./src/app/constant/url.constant.ts");
+/* harmony import */ var src_app_games_manager_modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/games-manager/modals/allocate-modal/allocate-modal.component */ "./src/app/games-manager/modals/allocate-modal/allocate-modal.component.ts");
+/* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+
+
+
+
+
 
 
 
 
 
 let TopmenuComponent = class TopmenuComponent {
-    constructor(_router) {
+    constructor(dialog, _router, _routeHelper, _sportMangerServices, _tosterService) {
+        this.dialog = dialog;
         this._router = _router;
+        this._routeHelper = _routeHelper;
+        this._sportMangerServices = _sportMangerServices;
+        this._tosterService = _tosterService;
     }
     ngOnInit() {
-        this.loggedinUserData = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].LOGIN_DATA_KEY));
-        this.userName = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].USER_NAME));
-        this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].USER_TYPE));
-        this.email = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].USER_EMAIL));
+        this.loggedinUserData = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__["AppConstant"].LOGIN_DATA_KEY));
+        this.userName = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__["AppConstant"].USER_NAME));
+        this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__["AppConstant"].USER_TYPE));
+        this.email = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_5__["AppConstant"].USER_EMAIL));
         // this.userName = this.loggedinUserData.name;
+    }
+    openDialogForUpdatePassword(id) {
+        const dialogRef = this.dialog.open(src_app_games_manager_modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_8__["AllocateModalComponent"], {
+            width: '500px',
+            data: { id: id }
+        });
+        dialogRef.afterClosed().subscribe(obj => {
+            if (obj.password) {
+                this._sportMangerServices.changePasswordForAdmin(obj).subscribe((response) => {
+                    console.log(response);
+                    if (response.status == true) {
+                        this._tosterService.success(response.message);
+                        localStorage.clear();
+                        this._router.navigate([src_app_constant_url_constant__WEBPACK_IMPORTED_MODULE_7__["UrlConstant"].LOGIN_PATH]);
+                    }
+                    else {
+                        this._tosterService.error(response.message);
+                    }
+                });
+            }
+        });
     }
     /* this functionality Will clear the Local Storage And move to the login page */
     logout() {
         localStorage.clear();
-        this._router.navigate([src_app_constant_url_constant__WEBPACK_IMPORTED_MODULE_4__["UrlConstant"].LOGIN_PATH]);
+        this._router.navigate([src_app_constant_url_constant__WEBPACK_IMPORTED_MODULE_7__["UrlConstant"].LOGIN_PATH]);
     }
     /* .............................completed ................... */
     profile() {
@@ -50975,7 +51538,7 @@ TopmenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         selector: 'app-topmenu',
         template: __webpack_require__(/*! ../../views/topmenu/topmenu.component.html */ "./src/app/shared/views/topmenu/topmenu.component.html"),
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_constant_routeData_constant__WEBPACK_IMPORTED_MODULE_6__["RouteDataHelper"], src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__["SportsMangerServices"], ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
 ], TopmenuComponent);
 
 
@@ -51111,7 +51674,7 @@ module.exports = "<div class=\"footer\">\r\n    <div class=\"container-fluid\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"nav-left-sidebar sidebar-dark\">\r\n    <div class=\"menu-list\">\r\n        <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n            <a class=\"d-xl-none d-lg-none\" href=\"#\">Dashboard</a>\r\n            <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\r\n                aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n                <span class=\"navbar-toggler-icon\"></span>\r\n            </button>\r\n            <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n                <ul class=\"navbar-nav flex-column\">\r\n                    <li class=\"nav-divider\">\r\n                        Menu\r\n                    </li>\r\n                    <li class=\"nav-item \">\r\n                        <a class=\"nav-link\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n                            routerLink=\"/games-manager/dashboard\"><i class=\"fas fa-tachometer-alt\"></i>Dashboard <span\r\n                                class=\"badge badge-success\">6</span></a>\r\n                    </li>\r\n                    <li class=\"nav-item \" *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_all_match') == -1\">\r\n                        <a class=\"nav-link\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n                            routerLink=\"/games-manager/match\"><i class=\"fas fa-gamepad\"></i>All Matches <span\r\n                                class=\"badge badge-success\">6</span></a>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\" \r\n                    *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_agent_management') == -1\">\r\n                        <a class=\"nav-link\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\"\r\n                            data-target=\"#submenu-70\" aria-controls=\"submenu-70\" data-toggle=\"collapse\"\r\n                            data-parent=\"#navbarNav\"><i class=\"fas fa-book\"></i>Agent Management </a>\r\n                        <div id=\"submenu-70\" class=\"collapse submenu\" aria-expanded=\"false\">\r\n                            <ul class=\"nav flex-column\">\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/create-agent\"> Create Agent</a>\r\n                                </li>\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/agent-list\"> View Agent List</a>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\" \r\n                    *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_member_management') == -1\">\r\n                        <a class=\"nav-link\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\"\r\n                            data-target=\"#submenu-71\" aria-controls=\"submenu-71\" data-toggle=\"collapse\"\r\n                            data-parent=\"#navbarNav\"><i class=\"fas fa-book\"></i>Member Management </a>\r\n                        <div id=\"submenu-71\" class=\"collapse submenu\" aria-expanded=\"false\">\r\n                            <ul class=\"nav flex-column\">\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/create-member\"> Create Member</a>\r\n                                </li>\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/member-list\"> View Member Agent</a>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\" \r\n                    *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_user_management') == -1\">\r\n                        <a class=\"nav-link\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\"\r\n                            data-target=\"#submenu-72\" aria-controls=\"submenu-72\" data-toggle=\"collapse\"\r\n                            data-parent=\"#navbarNav\"><i class=\"fas fa-book\"></i>User Management </a>\r\n                        <div id=\"submenu-72\" class=\"collapse submenu\" aria-expanded=\"false\">\r\n                            <ul class=\"nav flex-column\">\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/create-user\"> Create User</a>\r\n                                </li>\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/user-list\"> View User List</a>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                    \r\n                </ul>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"nav-left-sidebar sidebar-dark\">\r\n    <div class=\"menu-list\">\r\n        <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n            <a class=\"d-xl-none d-lg-none\" href=\"#\">Dashboard</a>\r\n            <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\r\n                aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n                <span class=\"navbar-toggler-icon\"></span>\r\n            </button>\r\n            <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n                <ul class=\"navbar-nav flex-column\">\r\n                    <li class=\"nav-divider\">\r\n                        Menu\r\n                    </li>\r\n                    <li class=\"nav-item \">\r\n                        <a class=\"nav-link\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n                            routerLink=\"/games-manager/dashboard\"><i class=\"fas fa-tachometer-alt\"></i>Dashboard <span\r\n                                class=\"badge badge-success\">6</span></a>\r\n                    </li>\r\n                    <li class=\"nav-item \" *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_all_match') == -1\">\r\n                        <a class=\"nav-link\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n                            routerLink=\"/games-manager/match\"><i class=\"fas fa-gamepad\"></i>All Matches <span\r\n                                class=\"badge badge-success\">6</span></a>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\" \r\n                    *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_agent_management') == -1\">\r\n                        <a class=\"nav-link\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\"\r\n                            data-target=\"#submenu-70\" aria-controls=\"submenu-70\" data-toggle=\"collapse\"\r\n                            data-parent=\"#navbarNav\"><i class=\"fas fa-users\"></i>Agent Management </a>\r\n                        <div id=\"submenu-70\" class=\"collapse submenu\" aria-expanded=\"false\">\r\n                            <ul class=\"nav flex-column\">\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/create-agent\"> Create Agent</a>\r\n                                </li>\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/agent-list\"> View Agent List</a>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\" \r\n                    *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_member_management') == -1\">\r\n                        <a class=\"nav-link\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\"\r\n                            data-target=\"#submenu-71\" aria-controls=\"submenu-71\" data-toggle=\"collapse\"\r\n                            data-parent=\"#navbarNav\"><i class=\"fas fa-user-friends\"></i>Member Management </a>\r\n                        <div id=\"submenu-71\" class=\"collapse submenu\" aria-expanded=\"false\">\r\n                            <ul class=\"nav flex-column\">\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/create-member\"> Create Member</a>\r\n                                </li>\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/member-list\"> View Member Agent</a>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\" \r\n                    *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_user_management') == -1\">\r\n                        <a class=\"nav-link\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\"\r\n                            data-target=\"#submenu-72\" aria-controls=\"submenu-72\" data-toggle=\"collapse\"\r\n                            data-parent=\"#navbarNav\"><i class=\"fas fa-user\"></i>User Management </a>\r\n                        <div id=\"submenu-72\" class=\"collapse submenu\" aria-expanded=\"false\">\r\n                            <ul class=\"nav flex-column\">\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/create-user\"> Create User</a>\r\n                                </li>\r\n                                <li class=\"nav-item\">\r\n                                    <a class=\"nav-link\" routerLinkActive=\"active\"\r\n                                        [routerLinkActiveOptions]=\"{exact: true}\"\r\n                                        routerLink=\"/games-manager/user-list\"> View User List</a>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                    <li class=\"nav-item \">\r\n                        <a class=\"nav-link\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n                            routerLink=\"/games-manager/transfer-list\"><i class=\"fas fa-random\"></i>Transfer Statement<span\r\n                                class=\"badge badge-success\">6</span></a>\r\n                    </li>\r\n                    <li class=\"nav-item \" *ngIf=\"userRoleMask?.hiddenItems?.indexOf('link_all_match') == -1\">\r\n                        <a class=\"nav-link\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n                            routerLink=\"/games-manager/config\"><i class=\"fas fa-cogs\"></i>Config Management<span\r\n                                class=\"badge badge-success\">6</span></a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -51122,7 +51685,7 @@ module.exports = "<div class=\"nav-left-sidebar sidebar-dark\">\r\n    <div clas
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <div class=\"dashboard-header\">\r\n    <nav class=\"navbar navbar-expand-lg bg-white fixed-top\">\r\n        <a class=\"navbar-brand\" href=\"index.html\"><img src=\"assets/images/argameicon.png\" alt=\"\"></a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n            <span class=\"navbar-toggler-icon\"></span>\r\n        </button>\r\n        <div class=\"collapse navbar-collapse \" id=\"navbarSupportedContent\">\r\n            <ul class=\"navbar-nav ml-auto navbar-right-top\">\r\n          \r\n           \r\n                <li class=\"nav-item dropdown nav-user\">\r\n                        <a class=\"nav-link nav-user-img d-flex align-items-center justify-content-between\" href=\"#\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t\t\t\t\t<div class=\"nav-user-info\">\r\n                                    <div class=\"row\">\r\n                                        <h3 class=\"mb-0  nav-user-name\">{{userName}}</h3>\r\n                                    </div>\r\n                                </div>\r\n\t\t\t\t\t\t\t\t<i class=\"fas fa-ellipsis-v\"></i></a>\r\n                    <div class=\"dropdown-menu dropdown-menu-right nav-user-dropdown\" aria-labelledby=\"navbarDropdownMenuLink2\">\r\n                        <!-- <a class=\"dropdown-item\" (click)=\"profile()\"><i class=\"fas fa-address-card mr-2\"></i>Profile</a>\r\n                        <a class=\"dropdown-item\" (click)=\"settings()\"><i class=\"fas fa-cogs mr-2\"></i>Settings</a> -->\r\n                        <a class=\"dropdown-item\" (click)=\"logout()\"><i class=\"fas fa-power-off mr-2\"></i>Logout</a>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </nav>\r\n</div>"
+module.exports = "\r\n  <div class=\"dashboard-header\">\r\n    <nav class=\"navbar navbar-expand-lg bg-white fixed-top\">\r\n        <a class=\"navbar-brand\" href=\"index.html\"><img src=\"assets/images/argameicon.png\" alt=\"\"></a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n            <i class=\"fas fa-ellipsis-v\"></i>\r\n        </button>\r\n        <div class=\"collapse navbar-collapse \" id=\"navbarSupportedContent\">\r\n            <ul class=\"navbar-nav ml-auto navbar-right-top\">\r\n                <li class=\"nav-item dropdown nav-user\">\r\n                        <a class=\"nav-link nav-user-img d-flex align-items-center justify-content-between\" href=\"#\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t\t\t\t\t<div class=\"nav-user-info\">\r\n                                    <div class=\"row\">\r\n                                        <h3 class=\"mb-0  nav-user-name\">{{userName}}</h3>\r\n                                    </div>\r\n                                </div>\r\n\t\t\t\t\t\t\t\t<i class=\"fas fa-ellipsis-v\"></i></a>\r\n                    <div class=\"dropdown-menu dropdown-menu-right nav-user-dropdown\" aria-labelledby=\"navbarDropdownMenuLink2\">\r\n                        <!-- <a class=\"dropdown-item\" (click)=\"profile()\"><i class=\"fas fa-address-card mr-2\"></i>Profile</a>\r\n                        <a class=\"dropdown-item\" (click)=\"settings()\"><i class=\"fas fa-cogs mr-2\"></i>Settings</a> -->\r\n                        <a class=\"dropdown-item\" (click)=\"logout()\"><i class=\"fas fa-power-off mr-2\"></i>Logout</a>\r\n                        <a class=\"dropdown-item\" (click)=\"openDialogForUpdatePassword('1')\"><i class=\"fas fa-key mr-2\"></i>Change Password</a>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </nav>\r\n</div>"
 
 /***/ })
 
