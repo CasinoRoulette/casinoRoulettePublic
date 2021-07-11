@@ -287,6 +287,7 @@ class AppConstant {
     static get USER_TYPE() { return 'type'; }
     static get USER_EMAIL() { return 'email'; }
     static get USER_IMAGE() { return 'image'; }
+    static get USER_TRANSFER_TOKEN() { return 'transferToken'; }
     static get FAILED_MESSAGE() { return 'Failed'; }
     static get SUCCESS_MEASSAGE() { return 'Success'; }
     static get DEVICE_TOKEN() { return 'deviceToken'; }

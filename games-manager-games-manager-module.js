@@ -48271,7 +48271,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Agent Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Agents</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Agents List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a\r\n                      style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                      <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                      <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Agent Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Agents</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Agents List</h4>\r\n              <div class=\"form-group mr-2 mb-0 ml-auto d-flex\" style=\"height: fit-content;\">\r\n                <input type=\"text\"  #searchValue class=\"form-control\" placeholder=\"search by username\" (keydown.enter)=\"searchKeyword(searchValue.value)\">\r\n                    <!-- <button type=\"button\" class=\"btn btn-primary\">Search</button>  -->\r\n                    <a (click)=\"searchKeyword(searchValue.value)\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i></a>\r\n            </div>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a\r\n                      style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                      <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                      <li *ngIf=\"li.take!=li.give\"><a\r\n                          (click)=\"transferCredit((li.take>li.give?(li.take-li.give):(li.give-li.take)),li._id)\"\r\n                          class=\"view\" data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                      <li *ngIf=\"userType==0\"><a (click)=\"openDialogForTransferToken(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"View Transfer Password\"><i class=\"fas fa-unlock\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -48297,6 +48297,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var src_app_games_manager_modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/games-manager/modals/allocate-modal/allocate-modal.component */ "./src/app/games-manager/modals/allocate-modal/allocate-modal.component.ts");
+/* harmony import */ var src_app_games_manager_modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/games-manager/modals/edit-modal/edit-modal.component */ "./src/app/games-manager/modals/edit-modal/edit-modal.component.ts");
+/* harmony import */ var src_app_games_manager_modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component */ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.ts");
+
+
 
 
 
@@ -48343,6 +48347,25 @@ let AgentListComponent = class AgentListComponent {
         this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].USER_TYPE));
         this.pageNo = 1;
         this.getAllMatchesList();
+    }
+    searchKeyword(searchValue) {
+        this.search = searchValue;
+        this.getAllMatchesList();
+    }
+    openDialogForTransferToken(id) {
+        this.subscribe = this._sportMangerServices.getTransferToken({ id: id }).subscribe((response) => {
+            if (response.status == true) {
+                const dialogRef = this.dialog.open(src_app_games_manager_modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_12__["EditModalComponent"], {
+                    width: '500px',
+                    data: { transferToken: response.result }
+                });
+                dialogRef.afterClosed().subscribe(obj => {
+                });
+            }
+            else {
+                this._tosterService.error(response.message);
+            }
+        });
     }
     openDialogForUpdatePassword(id) {
         const dialogRef = this.dialog.open(src_app_games_manager_modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_11__["AllocateModalComponent"], {
@@ -48454,13 +48477,15 @@ let AgentListComponent = class AgentListComponent {
             }
         });
     }
-    transferCredit(id) {
-        this._confirmation.create('Confirmation !', 'Are you sure you want to transfer amount to this User?', this.settings)
-            .subscribe((ans) => {
-            console.log(ans.resolved);
-            if (ans.resolved == true) {
-                var element = { userId: id };
-                this.subscribe = this._sportMangerServices.transferCredit(element).subscribe((response) => {
+    transferCredit(transferAmount, id) {
+        const dialogRef = this.dialog.open(src_app_games_manager_modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_13__["TransferCreditModalComponent"], {
+            width: '500px',
+            data: { transferAmount: transferAmount }
+        });
+        dialogRef.afterClosed().subscribe(obj => {
+            if (obj.transferToken) {
+                obj['userId'] = id;
+                this.subscribe = this._sportMangerServices.transferCredit(obj).subscribe((response) => {
                     console.log(response);
                     if (response.status == true) {
                         this._tosterService.success(response.message);
@@ -49066,19 +49091,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
-/* harmony import */ var _services_sportsNews_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+/* harmony import */ var src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/constant/app.constant */ "./src/app/constant/app.constant.ts");
+/* harmony import */ var _modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../modals/edit-modal/edit-modal.component */ "./src/app/games-manager/modals/edit-modal/edit-modal.component.ts");
+/* harmony import */ var _services_sportsNews_services__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+
+
 
 
 
 
 let DashboardComponent = class DashboardComponent {
-    constructor(_sportMangerServices) {
+    constructor(dialog, _sportMangerServices) {
+        this.dialog = dialog;
         this._sportMangerServices = _sportMangerServices;
     }
     ngOnInit() {
         this.getStatistics();
-        this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstant"].USER_TYPE));
+        this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].USER_TYPE));
+        this.transferToken = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].USER_TRANSFER_TOKEN));
+        if (this.transferToken) {
+            this.openDialogForTransferToken();
+        }
+    }
+    openDialogForTransferToken() {
+        const dialogRef = this.dialog.open(_modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_4__["EditModalComponent"], {
+            width: '500px',
+            data: { transferToken: this.transferToken }
+        });
+        dialogRef.afterClosed().subscribe(obj => {
+            localStorage.removeItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstant"].USER_TRANSFER_TOKEN);
+        });
     }
     getStatistics() {
         let Obj = {};
@@ -49106,7 +49149,7 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/games-manager/components/dashboard/dashboard.component.html"),
         styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/games-manager/components/dashboard/dashboard.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_3__["SportsMangerServices"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _services_sportsNews_services__WEBPACK_IMPORTED_MODULE_5__["SportsMangerServices"]])
 ], DashboardComponent);
 
 
@@ -49131,7 +49174,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">All Matches</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">All Matches </li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>All Matches List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Match ID</th>\r\n                  <th>Winning Number</th>\r\n                  <th>Total Bet Placed</th>\r\n                  <th>Total Winning</th>\r\n                  <th>Total Users</th>\r\n                  <th>Active</th>\r\n                  <th>Match Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li._id}}</td>\r\n                  <td>{{li.winningNumber}}</td>\r\n                  <td>{{li.totalBetPlaced}}</td>\r\n                  <td>{{li.totalWon}}</td>\r\n                  <td>{{li.totalUsers}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-match-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                      <!-- <li *ngIf=\"li.isActive!=true\"><a (click)=\"setUnsetCategory(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"setUnsetCategory(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li> -->\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">All Matches</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">All Matches </li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>All Matches List</h4>\r\n              <div class=\"form-group mr-2 mb-0 ml-auto d-flex\" style=\"height: fit-content;\">\r\n                <input type=\"text\"  #searchValue class=\"form-control\" title=\"search by date ex:10/7/2021\" placeholder=\"search by date ex:10/7/2021\" (keydown.enter)=\"searchKeyword(searchValue.value)\">\r\n                    <!-- <button type=\"button\" class=\"btn btn-primary\">Search</button>  -->\r\n                    <a (click)=\"searchKeyword(searchValue.value)\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i></a>\r\n            </div>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Match ID</th>\r\n                  <th>Winning Number</th>\r\n                  <th>Total Bet Placed</th>\r\n                  <th>Total Winning</th>\r\n                  <th>Total Users</th>\r\n                  <th>Active</th>\r\n                  <th>Match Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li._id}}</td>\r\n                  <td>{{li.winningNumber}}</td>\r\n                  <td>{{li.totalBetPlaced}}</td>\r\n                  <td>{{li.totalWon}}</td>\r\n                  <td>{{li.totalUsers}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-match-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                      <!-- <li *ngIf=\"li.isActive!=true\"><a (click)=\"setUnsetCategory(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"setUnsetCategory(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li> -->\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -49201,6 +49244,10 @@ let MatchesComponent = class MatchesComponent {
     ngOnInit() {
         this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].USER_TYPE));
         this.pageNo = 1;
+        this.getAllMatchesList();
+    }
+    searchKeyword(searchValue) {
+        this.search = searchValue;
         this.getAllMatchesList();
     }
     openDialogForImage(img) {
@@ -49643,7 +49690,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Member Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Members</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">      \r\n            <div class=\"col\"> <h4>Username : {{userDetail.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userDetail.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" >\r\n            <div class=\"col\"> <h4>Credit Limit : {{userDetail.totalCredit}}</h4></div>\r\n            <div class=\"col\"> <h4>Available Credit : {{userDetail.amount}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Members List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Members Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                          <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit(li._id)\" class=\"view\"\r\n                            data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Member Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Members</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Members List</h4>\r\n              <div class=\"form-group mr-2 mb-0 ml-auto d-flex\" style=\"height: fit-content;\">\r\n                <input type=\"text\"  #searchValue class=\"form-control\" placeholder=\"search by username\" (keydown.enter)=\"searchKeyword(searchValue.value)\">\r\n                    <!-- <button type=\"button\" class=\"btn btn-primary\">Search</button>  -->\r\n                    <a (click)=\"searchKeyword(searchValue.value)\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i></a>\r\n            </div>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Members Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Position Taking</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a\r\n                      style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td>{{li.positionTaking}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a (click)=\"viewDownline(li._id,li.name)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"View Downline\"><i class=\"fas fa-sitemap\"></i></a></li>\r\n                      <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                      <li *ngIf=\"li.take!=li.give\"><a\r\n                          (click)=\"transferCredit((li.take>li.give?(li.take-li.give):(li.give-li.take)),li._id)\"\r\n                          class=\"view\" data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                      <li *ngIf=\"userType==0\"><a (click)=\"openDialogForTransferToken(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"View Transfer Password\"><i class=\"fas fa-unlock\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -49669,6 +49716,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var src_app_games_manager_modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/games-manager/modals/allocate-modal/allocate-modal.component */ "./src/app/games-manager/modals/allocate-modal/allocate-modal.component.ts");
+/* harmony import */ var src_app_games_manager_modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component */ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.ts");
+/* harmony import */ var src_app_games_manager_modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/games-manager/modals/edit-modal/edit-modal.component */ "./src/app/games-manager/modals/edit-modal/edit-modal.component.ts");
+
+
 
 
 
@@ -49715,6 +49766,10 @@ let ViewMemberComponent = class ViewMemberComponent {
     ngOnInit() {
         this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].USER_TYPE));
         this.pageNo = 1;
+        this.getAllMatchesList();
+    }
+    searchKeyword(searchValue) {
+        this.search = searchValue;
         this.getAllMatchesList();
     }
     openDialogForImage(img) {
@@ -49838,13 +49893,30 @@ let ViewMemberComponent = class ViewMemberComponent {
             }
         });
     }
-    transferCredit(id) {
-        this._confirmation.create('Confirmation !', 'Are you sure you want to transfer amount to this User?', this.settings)
-            .subscribe((ans) => {
-            console.log(ans.resolved);
-            if (ans.resolved == true) {
-                var element = { userId: id };
-                this.subscribe = this._sportMangerServices.transferCredit(element).subscribe((response) => {
+    openDialogForTransferToken(id) {
+        this.subscribe = this._sportMangerServices.getTransferToken({ id: id }).subscribe((response) => {
+            if (response.status == true) {
+                const dialogRef = this.dialog.open(src_app_games_manager_modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_13__["EditModalComponent"], {
+                    width: '500px',
+                    data: { transferToken: response.result }
+                });
+                dialogRef.afterClosed().subscribe(obj => {
+                });
+            }
+            else {
+                this._tosterService.error(response.message);
+            }
+        });
+    }
+    transferCredit(transferAmount, id) {
+        const dialogRef = this.dialog.open(src_app_games_manager_modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_12__["TransferCreditModalComponent"], {
+            width: '500px',
+            data: { transferAmount: transferAmount }
+        });
+        dialogRef.afterClosed().subscribe(obj => {
+            if (obj.transferToken) {
+                obj['userId'] = id;
+                this.subscribe = this._sportMangerServices.transferCredit(obj).subscribe((response) => {
                     console.log(response);
                     if (response.status == true) {
                         this._tosterService.success(response.message);
@@ -49889,7 +49961,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Transfer Statement</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Transfer Statements</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Transfer List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Type</th>\r\n                  <th>Amount</th>\r\n                  <th>Created Date</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.type}}</td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">Transfer Statement</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Transfer Statements</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Username : {{userDetail.username || ''}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Name : {{userDetail.name || ''}}</h4>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col\">\r\n              <h4>Credit Limit : {{userDetail.totalCredit}}</h4>\r\n            </div>\r\n            <div class=\"col\">\r\n              <h4>Available Credit : {{userDetail.amount}}</h4>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Transfer List</h4>\r\n              <div class=\"form-group mr-2 mb-0 ml-auto d-flex\" style=\"height: fit-content;\">\r\n                <input type=\"text\"  #searchValue class=\"form-control\" title=\"search by date ex:10/7/2021\" placeholder=\"search by date ex:10/7/2021\" (keydown.enter)=\"searchKeyword(searchValue.value)\">\r\n                    <!-- <button type=\"button\" class=\"btn btn-primary\">Search</button>  -->\r\n                    <a (click)=\"searchKeyword(searchValue.value)\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i></a>\r\n            </div>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Type</th>\r\n                  <th>Notes</th>\r\n                  <th>Amount</th>\r\n                  <th>Created Date</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username || ''}}</td>\r\n                  <td>{{li.type}}</td>\r\n                  <td>{{li.transferNotes || ''}}</td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -49956,6 +50028,10 @@ let TransferListComponent = class TransferListComponent {
     ngOnInit() {
         this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].USER_TYPE));
         this.pageNo = 1;
+        this.getAllMatchesList();
+    }
+    searchKeyword(searchValue) {
+        this.search = searchValue;
         this.getAllMatchesList();
     }
     goBack() {
@@ -50200,7 +50276,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">View User Detail</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View User Detail </li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\"> <h4>User Detail  </h4></div>\r\n\r\n            <div class=\"col\"> <h4>Username : {{userObj.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userObj.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" *ngIf=\"firstLevel.username && userType<2\" >\r\n            <div class=\"col\"> <h4>Created By {{firstLevel.roleType==0?'Admin':firstLevel.roleType==1? 'Agent':'Member'}} </h4></div>\r\n            <div class=\"col\"> <h4>Username : {{firstLevel.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{firstLevel.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" *ngIf=\"secondLevel.username && userType<1\">\r\n            <div class=\"col\"> <h4>Created By {{secondLevel.roleType==0?'Admin':secondLevel.roleType==1? 'Agent':'Member'}} </h4></div>\r\n            <div class=\"col\"> <h4>Username : {{secondLevel.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{secondLevel.name}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Match Played By User </h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllUserMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>MatchId</th>\r\n                  <th>Winning Number</th>\r\n                  <th>Amount Won</th>\r\n                  <th>Bet Amount</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: pageNo };let i=index\">\r\n                  <td>{{(pageNo-1)*20 + (i+1)}}</td>\r\n                  <td>{{li._id}}</td>\r\n                  <td>{{li.winningNumber}}</td>\r\n                  <td>{{li.win}}</td>\r\n                  <td>{{li.betAmount}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-match-data/{{li._id}}\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                      <!-- <li *ngIf=\"li.isActive!=true\"><a (click)=\"setUnsetCategory(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"setUnsetCategory(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li> -->\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">View User Detail</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View User Detail </li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col\"> <h4>User Detail  </h4></div>\r\n            <div class=\"col\"> <h4>Username : {{userObj.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userObj.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" *ngIf=\"firstLevel.username && userType<2\" >\r\n            <div class=\"col\"> <h4>Created By {{firstLevel.roleType==0?'Admin':firstLevel.roleType==1? 'Agent':'Member'}} </h4></div>\r\n            <div class=\"col\"> <h4>Username : {{firstLevel.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{firstLevel.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" *ngIf=\"secondLevel.username && userType<1\">\r\n            <div class=\"col\"> <h4>Created By {{secondLevel.roleType==0?'Admin':secondLevel.roleType==1? 'Agent':'Member'}} </h4></div>\r\n            <div class=\"col\"> <h4>Username : {{secondLevel.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{secondLevel.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" >\r\n            <div class=\"col\"> <h4>Location : {{userObj.location || 'not available'}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i> Match Played By User </h4> \r\n              <div class=\"form-group mr-2 mb-0 ml-auto d-flex\" style=\"height: fit-content;\">\r\n                <input type=\"text\"  #searchValue class=\"form-control\" title=\"search by date ex:10/7/2021\" placeholder=\"search by date ex:10/7/2021\" (keydown.enter)=\"searchKeyword(searchValue.value)\">\r\n                    <!-- <button type=\"button\" class=\"btn btn-primary\">Search</button>  -->\r\n                    <a (click)=\"searchKeyword(searchValue.value)\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i></a>\r\n            </div>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllUserMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>MatchId</th>\r\n                  <th>Winning Number</th>\r\n                  <th>Amount Won</th>\r\n                  <th>Bet Amount</th>\r\n                  <th>Bet Numbers</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th *ngIf=\"userType==0\">Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: pageNo };let i=index\">\r\n                  <td>{{(pageNo-1)*20 + (i+1)}}</td>\r\n                  <td>{{li._id}}</td>\r\n                  <td>{{li.winningNumber}}</td>\r\n                  <td>{{li.win}}</td>\r\n                  <td>{{li.betAmount}}</td>\r\n                  <td><a style=\"color: #7272f3;\" (click)=\"viewBetNumbers(li.totalBet)\" class=\"view\"\r\n                    data-toggle=\"tooltip\" title=\"View bet Numbers\"><i class=\"fas fa-list-ol\"></i></a></td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td *ngIf=\"userType==0\">\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-match-data/{{li._id}}\" class=\"view\" data-toggle=\"tooltip\"\r\n                          title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                      <!-- <li *ngIf=\"li.isActive!=true\"><a (click)=\"setUnsetCategory(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"setUnsetCategory(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li> -->\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -50225,6 +50301,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_games_manager_modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/games-manager/modals/claim-modal/claim-modal.component */ "./src/app/games-manager/modals/claim-modal/claim-modal.component.ts");
 /* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var src_app_games_manager_modals_bet_number_modal_bet_number_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/games-manager/modals/bet-number-modal/bet-number-modal.component */ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.ts");
+
 
 
 
@@ -50279,6 +50357,10 @@ let ViewUserDetailComponent = class ViewUserDetailComponent {
             this.getUserDetail();
             this.getAllUserMatchesList();
         });
+    }
+    searchKeyword(searchValue) {
+        this.search = searchValue;
+        this.getAllUserMatchesList();
     }
     openDialogForImage(img) {
         const dialogRef = this.dialog.open(src_app_games_manager_modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_8__["ClaimModalComponent"], {
@@ -50354,23 +50436,19 @@ let ViewUserDetailComponent = class ViewUserDetailComponent {
     }
     /* ...........................completed ........................................ */
     //////////////////////////////////////////////////////////////////\
-    setUnsetCategory(id, set) {
-        // this._confirmation.create('Confirmation !', 'Are you sure you want to Activate/Deactivate this Category?', this.settings)
-        //   .subscribe((ans: ResolveEmit) => {
-        //     console.log(ans.resolved);
-        //     if (ans.resolved == true) {
-        //       var element = { id: id,isActive:set }
-        //       this.subscribe = this._sportMangerServices.getAllMatchesList(element).subscribe((response: any) => {
-        //         console.log(response);
-        //         if (response.status == true) {
-        //           this._tosterService.success(response.result.message)
-        //           this.getAllMatchesList();
-        //         } else {
-        //           this._tosterService.error(response.ressult.message)
-        //         }
-        //       });
-        //     }
-        //   });
+    viewBetNumbers(totalBet) {
+        let numberArray = [];
+        totalBet.map((x, i) => {
+            if (x > 0) {
+                numberArray.push(i);
+            }
+        });
+        const dialogRef = this.dialog.open(src_app_games_manager_modals_bet_number_modal_bet_number_modal_component__WEBPACK_IMPORTED_MODULE_11__["BetNumberModalComponent"], {
+            width: '500px',
+            data: { numberArray: numberArray }
+        });
+        dialogRef.afterClosed().subscribe(obj => {
+        });
     }
 };
 ViewUserDetailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -50404,7 +50482,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">User Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Users</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">      \r\n            <div class=\"col\"> <h4>Username : {{userDetail.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userDetail.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" >\r\n            <div class=\"col\"> <h4>Credit Limit : {{userDetail.totalCredit}}</h4></div>\r\n            <div class=\"col\"> <h4>Available Credit : {{userDetail.amount}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Users List</h4>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Users Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-user-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                          <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit(li._id)\" class=\"view\"\r\n                            data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
+module.exports = "<span class=\"dashboard-spinner spinner-warning spinner-sm loader\" *ngIf=\"user_loader\"></span>\r\n<div class=\"container-fluid dashboard-content\">\r\n  <!-- ============================================================== -->\r\n  <!-- pageheader -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12\">\r\n      <div class=\"page-header\">\r\n        <h2 class=\"pageheader-title\">User Management</h2>\r\n        <p class=\"pageheader-text\"></p>\r\n        <div class=\"page-breadcrumb\">\r\n          <nav aria-label=\"breadcrumb\">\r\n            <ol class=\"breadcrumb\">\r\n              <li class=\"breadcrumb-item\"><a routerLink=\"/dashboard\" class=\"breadcrumb-link\">Dashboard</a></li>\r\n              <li class=\"breadcrumb-item active\" aria-current=\"page\">View Users</li>\r\n            </ol>\r\n          </nav>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <!-- end pageheader -->\r\n  <!-- ============================================================== -->\r\n  <!--  ----------------------------------------------------------- -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        \r\n        <div class=\"card-body\">\r\n          <div class=\"row\">      \r\n            <div class=\"col\"> <h4>Username : {{userDetail.username}}</h4></div>\r\n            <div class=\"col\"> <h4>Name : {{userDetail.name}}</h4></div>\r\n          </div>\r\n          <div class=\"row\" >\r\n            <div class=\"col\"> <h4>Credit Limit : {{userDetail.totalCredit}}</h4></div>\r\n            <div class=\"col\"> <h4>Available Credit : {{userDetail.amount}}</h4></div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- ============================================================== -->\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12 col-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header d-flex justify-content-between\">\r\n          <h4 class=\"card-header-title\"><i class=\"fas fa-long-arrow-alt-left\" data-toggle=\"tooltip\" title=\"GO Back\"\r\n              (click)=\"goBack()\"></i>View Users List</h4>\r\n              <div class=\"form-group mr-2 mb-0 ml-auto d-flex\" style=\"height: fit-content;\">\r\n                <input type=\"text\"  #searchValue class=\"form-control\" placeholder=\"search by username\" (keydown.enter)=\"searchKeyword(searchValue.value)\">\r\n                    <!-- <button type=\"button\" class=\"btn btn-primary\">Search</button>  -->\r\n                    <a (click)=\"searchKeyword(searchValue.value)\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i></a>\r\n            </div>\r\n          <div class=\"form-group mr-2 mb-0 ml-auto d-flex\">\r\n            <mat-form-field>\r\n              <mat-label>Select Filter</mat-label>\r\n              <mat-select [(ngModel)]=\"selectedValue\" (selectionChange)=\"getAllMatchesList()\">\r\n                <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n                  {{option.viewValue}}\r\n                </mat-option>\r\n              </mat-select>\r\n            </mat-form-field>\r\n\r\n          </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"table-responsive\">\r\n            <div class=\"row\" *ngIf=\"userType==0\">\r\n              <div class=\"col\">\r\n                <mat-checkbox [(ngModel)]=\"createdByAdmin\" (color)=\"primary\" (ngModelChange)=\"getAllMatchesList()\">\r\n                  Show Users Created by Admin\r\n                </mat-checkbox>\r\n              </div>\r\n            </div>\r\n            <table class=\"table table-striped table-bordered first\">\r\n              <thead>\r\n                <tr>\r\n                  <th>S.No</th>\r\n                  <th>Username</th>\r\n                  <th>Name</th>\r\n                  <th>Credit Limit</th>\r\n                  <th>Available Credit</th>\r\n                  <th>Take</th>\r\n                  <th>Give</th>\r\n                  <th>Active</th>\r\n                  <th>Created Date</th>\r\n                  <th>Action</th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <tr\r\n                  *ngFor=\"let li of list| paginate: { itemsPerPage:pageLimit, totalItems: totalCount,currentPage: currentPage };let i=index\">\r\n                  <td>{{(currentPage-1)*20 + (i+1)}}</td>\r\n                  <td>{{li.username}}</td>\r\n                  <td>{{li.name}}</td>\r\n                  <td (click)=\"openDialogForUpdateCredit(li._id,li.amount,li.totalCredit)\"><a style=\"color: #7272f3;\">{{li.totalCredit}}</a></td>\r\n                  <td>{{li.amount}}</td>\r\n                  <td>{{li.take>li.give?(li.take-li.give):0}}</td>\r\n                  <td>{{li.give>li.take?(li.give-li.take):0}}</td>\r\n                  <td *ngIf=\"li.isActive\"><i class=\"fas fa-check ng-star-inserted\"></i></td>\r\n                  <td *ngIf=\"!li.isActive\"><i class=\"fas fa-times\"></i></td>\r\n                  <td>{{li.createdAt | date :'dd/MM/yyyy HH:mm:ss'}}</td>\r\n                  <td>\r\n                    <ul class=\"action-list\">\r\n                      <li><a routerLink=\"/games-manager/view-user-data/{{li._id}}\" class=\"view\"\r\n                        data-toggle=\"tooltip\" title=\"View Data\"><i class=\"far fa-eye\"></i></a></li>\r\n                        <li><a (click)=\"openDialogForUpdatePassword(li._id)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Update Password\"><i class=\"fas fa-key\"></i></a></li>\r\n                      <li *ngIf=\"li.isActive!=true\"><a (click)=\"updateActiveStatus(li._id,true)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Activate\"><i class=\"fas fa-clipboard-check\"></i> </a></li>\r\n                      <li *ngIf=\"li.isActive==true\"><a (click)=\"updateActiveStatus(li._id,false)\" class=\"view\"\r\n                          data-toggle=\"tooltip\" title=\"Deactivate\"><i class=\"fas fa-user-slash\"></i></a></li>\r\n                          <li *ngIf=\"li.take!=li.give\"><a (click)=\"transferCredit((li.take>li.give?(li.take-li.give):(li.give-li.take)),li._id)\" class=\"view\"\r\n                            data-toggle=\"tooltip\" title=\"Transfer\"><i class=\"fas fa-random\"></i></a></li>\r\n                    </ul>\r\n                  </td>\r\n                </tr>\r\n                <tr *ngIf=\"list.length <=0\">\r\n                  <td colspan=\"11\" class=\"text-center\">Data Not Found</td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <ng-container *ngIf=\"list.length >0\">\r\n            <pagination-controls class=\"my-pagination pagination\" (pageChange)=\"pageChanged($event)\"\r\n              directionLinks=\"true\" autoHide=\"true\" previousLabel=\"\" nextLabel=\"\" responsive=\"true\">\r\n            </pagination-controls>\r\n          </ng-container>\r\n        </div>\r\n      </div>\r\n    </div>"
 
 /***/ }),
 
@@ -50430,6 +50508,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_games_manager_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/games-manager/services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var src_app_games_manager_modals_allocate_modal_allocate_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/games-manager/modals/allocate-modal/allocate-modal.component */ "./src/app/games-manager/modals/allocate-modal/allocate-modal.component.ts");
+/* harmony import */ var src_app_games_manager_modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component */ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.ts");
+
 
 
 
@@ -50476,6 +50556,10 @@ let ViewUserComponent = class ViewUserComponent {
     ngOnInit() {
         this.userType = JSON.parse(localStorage.getItem(src_app_constant_app_constant__WEBPACK_IMPORTED_MODULE_6__["AppConstant"].USER_TYPE));
         this.pageNo = 1;
+        this.getAllMatchesList();
+    }
+    searchKeyword(searchValue) {
+        this.search = searchValue;
         this.getAllMatchesList();
     }
     openDialogForUpdatePassword(id) {
@@ -50592,13 +50676,15 @@ let ViewUserComponent = class ViewUserComponent {
             }
         });
     }
-    transferCredit(id) {
-        this._confirmation.create('Confirmation !', 'Are you sure you want to transfer amount to this User?', this.settings)
-            .subscribe((ans) => {
-            console.log(ans.resolved);
-            if (ans.resolved == true) {
-                var element = { userId: id };
-                this.subscribe = this._sportMangerServices.transferCredit(element).subscribe((response) => {
+    transferCredit(transferAmount, id) {
+        const dialogRef = this.dialog.open(src_app_games_manager_modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_12__["TransferCreditModalComponent"], {
+            width: '500px',
+            data: { transferAmount: transferAmount }
+        });
+        dialogRef.afterClosed().subscribe(obj => {
+            if (obj.transferToken) {
+                obj['userId'] = id;
+                this.subscribe = this._sportMangerServices.transferCredit(obj).subscribe((response) => {
                     console.log(response);
                     if (response.status == true) {
                         this._tosterService.success(response.message);
@@ -50722,6 +50808,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_user_view_user_detail_view_user_detail_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/user/view-user-detail/view-user-detail.component */ "./src/app/games-manager/components/user/view-user-detail/view-user-detail.component.ts");
 /* harmony import */ var _components_transfer_transfer_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/transfer/transfer-list.component */ "./src/app/games-manager/components/transfer/transfer-list.component.ts");
 /* harmony import */ var _components_configManager_config_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/configManager/config.component */ "./src/app/games-manager/components/configManager/config.component.ts");
+/* harmony import */ var _modals_bet_number_modal_bet_number_modal_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./modals/bet-number-modal/bet-number-modal.component */ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.ts");
+/* harmony import */ var _modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./modals/transfer-credit-modal/transfer-credit-modal.component */ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.ts");
+
+
 
 
 
@@ -50785,7 +50875,9 @@ GamesManagerModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_configManager_config_component__WEBPACK_IMPORTED_MODULE_32__["ConfigComponent"],
             _modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_17__["ClaimModalComponent"],
             _modals_priority_modal_priority_modal_component__WEBPACK_IMPORTED_MODULE_18__["PriorityModalComponent"],
+            _modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_34__["TransferCreditModalComponent"],
             _modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_19__["EditModalComponent"],
+            _modals_bet_number_modal_bet_number_modal_component__WEBPACK_IMPORTED_MODULE_33__["BetNumberModalComponent"],
             _components_match_matches_matches_component__WEBPACK_IMPORTED_MODULE_21__["MatchesComponent"],
             _components_match_view_matches_view_matches_component__WEBPACK_IMPORTED_MODULE_22__["ViewMatchesComponent"],
             _components_agent_create_agent_create_agent_component__WEBPACK_IMPORTED_MODULE_23__["CreateAgentComponent"],
@@ -50847,7 +50939,9 @@ GamesManagerModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _modals_claim_modal_claim_modal_component__WEBPACK_IMPORTED_MODULE_17__["ClaimModalComponent"],
             _modals_priority_modal_priority_modal_component__WEBPACK_IMPORTED_MODULE_18__["PriorityModalComponent"],
             _modals_edit_modal_edit_modal_component__WEBPACK_IMPORTED_MODULE_19__["EditModalComponent"],
-            _modals_set_unset_modal_set_unset_modal_component__WEBPACK_IMPORTED_MODULE_20__["SetUnsetModalComponent"]
+            _modals_bet_number_modal_bet_number_modal_component__WEBPACK_IMPORTED_MODULE_33__["BetNumberModalComponent"],
+            _modals_set_unset_modal_set_unset_modal_component__WEBPACK_IMPORTED_MODULE_20__["SetUnsetModalComponent"],
+            _modals_transfer_credit_modal_transfer_credit_modal_component__WEBPACK_IMPORTED_MODULE_34__["TransferCreditModalComponent"]
         ],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"]]
     })
@@ -50961,6 +51055,80 @@ AllocateModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_3__["SportsMangerServices"],
         _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object])
 ], AllocateModalComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.css":
+/*!**************************************************************************************!*\
+  !*** ./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.css ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dhbWVzLW1hbmFnZXIvbW9kYWxzL2JldC1udW1iZXItbW9kYWwvYmV0LW51bWJlci1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.html":
+/*!***************************************************************************************!*\
+  !*** ./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.html ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h2 mat-dialog-title class=\"title-color\">Bet Numbers</h2>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span class=\"icons-card float-right\">\r\n      <i class=\"fa fa-times icon-cancel\" title=\"Cancel\" (click)=\"closeModal()\" aria-hidden=\"true\"></i>\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n<mat-divider></mat-divider>\r\n\r\n<br>\r\n<mat-dialog-content>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col\" style=\"display: flex;\">\r\n      <h3> {{numberArray.join(\",\")}}</h3>\r\n    </div>\r\n  </div>\r\n</mat-dialog-content>\r\n<mat-divider></mat-divider>"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.ts":
+/*!*************************************************************************************!*\
+  !*** ./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.ts ***!
+  \*************************************************************************************/
+/*! exports provided: BetNumberModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BetNumberModalComponent", function() { return BetNumberModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_sportsNews_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+
+
+
+
+let BetNumberModalComponent = class BetNumberModalComponent {
+    constructor(_sportMangerServices, dialogRef, data) {
+        this._sportMangerServices = _sportMangerServices;
+        this.dialogRef = dialogRef;
+        this.data = data;
+    }
+    ngOnInit() {
+        this.numberArray = this.data.numberArray;
+    }
+    onNoClick() {
+        this.dialogRef.close();
+    }
+    closeModal() {
+        this.dialogRef.close();
+    }
+    saveAndClose() {
+        this.dialogRef.close();
+    }
+};
+BetNumberModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-bet-number-modal',
+        template: __webpack_require__(/*! ./bet-number-modal.component.html */ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.html"),
+        styles: [__webpack_require__(/*! ./bet-number-modal.component.css */ "./src/app/games-manager/modals/bet-number-modal/bet-number-modal.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_2__["SportsMangerServices"],
+        _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"], Object])
+], BetNumberModalComponent);
 
 
 
@@ -51101,7 +51269,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h2 mat-dialog-title class=\"title-color\">Edit</h2>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span class=\"icons-card float-right\">\r\n      <i class=\"fa fa-times icon-cancel\" title=\"Cancel\" (click)=\"closeModal()\" aria-hidden=\"true\"></i>\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n<mat-divider></mat-divider>\r\n\r\n<br>\r\n<mat-dialog-content>\r\n\r\n  <div class=\"row\">\r\n\r\n    <mat-form-field  appearance=\"outline\" floatLabel=\"always\" color=\"primary\"\r\n      class=\"full-width\">\r\n      <mat-label>Url</mat-label>\r\n      <input id=\"cfw\" name=\"cfw\" matInput [(ngModel)]=\"obj.url\" maxlength=\"150\">\r\n    </mat-form-field>\r\n  </div>\r\n</mat-dialog-content>\r\n<mat-divider></mat-divider>\r\n\r\n<mat-dialog-actions class=\"row\" style=\"\r\njustify-content: center;\r\n\">\r\n  <button mat-raised-button color=\"primary\" [mat-dialog-close]=\"obj\">Submit</button>\r\n</mat-dialog-actions>"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h2 mat-dialog-title class=\"title-color\">Transfer Password</h2>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span class=\"icons-card float-right\">\r\n      <i class=\"fa fa-times icon-cancel\" title=\"Cancel\" (click)=\"closeModal()\" aria-hidden=\"true\"></i>\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n<mat-divider></mat-divider>\r\n\r\n<br>\r\n<mat-dialog-content>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col\" style=\"display: flex;\">\r\n      Please Not down Your Transfer Password :  <h3> {{transferToken}}</h3>\r\n    </div>\r\n  </div>\r\n</mat-dialog-content>\r\n<mat-divider></mat-divider>"
 
 /***/ }),
 
@@ -51128,11 +51296,9 @@ let EditModalComponent = class EditModalComponent {
         this._sportMangerServices = _sportMangerServices;
         this.dialogRef = dialogRef;
         this.data = data;
-        this.obj = {
-            url: ""
-        };
     }
     ngOnInit() {
+        this.transferToken = this.data.transferToken;
     }
     onNoClick() {
         this.dialogRef.close();
@@ -51141,7 +51307,7 @@ let EditModalComponent = class EditModalComponent {
         this.dialogRef.close();
     }
     saveAndClose() {
-        this.dialogRef.close(this.obj);
+        this.dialogRef.close();
     }
 };
 EditModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -51284,6 +51450,96 @@ SetUnsetModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.css":
+/*!************************************************************************************************!*\
+  !*** ./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.css ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dhbWVzLW1hbmFnZXIvbW9kYWxzL3RyYW5zZmVyLWNyZWRpdC1tb2RhbC90cmFuc2Zlci1jcmVkaXQtbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.html":
+/*!*************************************************************************************************!*\
+  !*** ./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.html ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h2 mat-dialog-title class=\"title-color\">Transfer Credit</h2>\r\n  </div>\r\n  <div class=\"col\">\r\n    <span class=\"icons-card float-right\">\r\n      <i class=\"fa fa-times icon-cancel\" title=\"Cancel\" (click)=\"closeModal()\" aria-hidden=\"true\"></i>\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n<mat-divider></mat-divider>\r\n\r\n<br>\r\n<mat-dialog-content>\r\n  <div class=\"row\">\r\n    <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n      <mat-label>Transfer Amount</mat-label>\r\n      <input matInput [(ngModel)]=\"transferAmount\" >\r\n    </mat-form-field>\r\n  </div>\r\n  <div class=\"row\">\r\n    <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n      <mat-label>Transfer notes</mat-label>\r\n      <input matInput [(ngModel)]=\"transferNotes\" >\r\n    </mat-form-field>\r\n  </div>\r\n  <div class=\"row\">\r\n    <mat-form-field appearance=\"outline\" floatLabel=\"always\" color=\"primary\" class=\"full-width\">\r\n      <mat-label>Transfer Password</mat-label>\r\n      <input matInput [(ngModel)]=\"transferToken\" >\r\n    </mat-form-field>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div style=\"color: red;font-size: small;\" *ngIf=\"formError\">error either amount is more than {{data.transferAmount}} or transfer password field is empty </div>\r\n  </div>\r\n</mat-dialog-content>\r\n<mat-divider></mat-divider>\r\n\r\n<mat-dialog-actions class=\"row\" style=\"\r\njustify-content: center;\r\n\">\r\n  <button mat-raised-button color=\"primary\" (click)=\"saveAndClose()\">Submit</button>\r\n</mat-dialog-actions>"
+
+/***/ }),
+
+/***/ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.ts":
+/*!***********************************************************************************************!*\
+  !*** ./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.ts ***!
+  \***********************************************************************************************/
+/*! exports provided: TransferCreditModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TransferCreditModalComponent", function() { return TransferCreditModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_sportsNews_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/sportsNews.services */ "./src/app/games-manager/services/sportsNews.services.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
+
+
+
+
+let TransferCreditModalComponent = class TransferCreditModalComponent {
+    constructor(_sportMangerServices, dialogRef, data) {
+        this._sportMangerServices = _sportMangerServices;
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.obj = {
+            transferAmount: 0,
+            transferToken: "",
+            transferNotes: ""
+        };
+        this.transferAmount = 0;
+        this.formError = false;
+    }
+    ngOnInit() {
+        this.transferAmount = this.data.transferAmount;
+    }
+    onNoClick() {
+        this.dialogRef.close();
+    }
+    closeModal() {
+        this.dialogRef.close();
+    }
+    saveAndClose() {
+        if (this.transferAmount <= this.data.transferAmount && this.transferToken != "") {
+            this.formError = false;
+            this.obj.transferAmount = Math.abs(this.transferAmount);
+            this.obj.transferNotes = this.transferNotes;
+            this.obj.transferToken = this.transferToken;
+            this.dialogRef.close(this.obj);
+        }
+        else {
+            this.formError = true;
+        }
+    }
+};
+TransferCreditModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-transfer-credit-modal',
+        template: __webpack_require__(/*! ./transfer-credit-modal.component.html */ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.html"),
+        styles: [__webpack_require__(/*! ./transfer-credit-modal.component.css */ "./src/app/games-manager/modals/transfer-credit-modal/transfer-credit-modal.component.css")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_sportsNews_services__WEBPACK_IMPORTED_MODULE_2__["SportsMangerServices"],
+        _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"], Object])
+], TransferCreditModalComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/games-manager/services/sportsNews.services.ts":
 /*!***************************************************************!*\
   !*** ./src/app/games-manager/services/sportsNews.services.ts ***!
@@ -51341,6 +51597,9 @@ let SportsMangerServices = class SportsMangerServices {
     }
     updateCredit(Obj) {
         return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/updateCredit`, Obj);
+    }
+    getTransferToken(Obj) {
+        return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/getTransferToken`, Obj);
     }
     updatePassword(Obj) {
         return this._basesServices.postRequestWithToken(`${src_app_constant_constants__WEBPACK_IMPORTED_MODULE_3__["ApiBaseUrl"]}/updatePassword`, Obj);
@@ -51685,7 +51944,7 @@ module.exports = "<div class=\"nav-left-sidebar sidebar-dark\">\r\n    <div clas
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <div class=\"dashboard-header\">\r\n    <nav class=\"navbar navbar-expand-lg bg-white fixed-top\">\r\n        <a class=\"navbar-brand\" href=\"index.html\"><img src=\"assets/images/argameicon.png\" alt=\"\"></a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n            <i class=\"fas fa-ellipsis-v\"></i>\r\n        </button>\r\n        <div class=\"collapse navbar-collapse \" id=\"navbarSupportedContent\">\r\n            <ul class=\"navbar-nav ml-auto navbar-right-top\">\r\n                <li class=\"nav-item dropdown nav-user\">\r\n                        <a class=\"nav-link nav-user-img d-flex align-items-center justify-content-between\" href=\"#\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t\t\t\t\t<div class=\"nav-user-info\">\r\n                                    <div class=\"row\">\r\n                                        <h3 class=\"mb-0  nav-user-name\">{{userName}}</h3>\r\n                                    </div>\r\n                                </div>\r\n\t\t\t\t\t\t\t\t<i class=\"fas fa-ellipsis-v\"></i></a>\r\n                    <div class=\"dropdown-menu dropdown-menu-right nav-user-dropdown\" aria-labelledby=\"navbarDropdownMenuLink2\">\r\n                        <!-- <a class=\"dropdown-item\" (click)=\"profile()\"><i class=\"fas fa-address-card mr-2\"></i>Profile</a>\r\n                        <a class=\"dropdown-item\" (click)=\"settings()\"><i class=\"fas fa-cogs mr-2\"></i>Settings</a> -->\r\n                        <a class=\"dropdown-item\" (click)=\"logout()\"><i class=\"fas fa-power-off mr-2\"></i>Logout</a>\r\n                        <a class=\"dropdown-item\" (click)=\"openDialogForUpdatePassword('1')\"><i class=\"fas fa-key mr-2\"></i>Change Password</a>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </nav>\r\n</div>"
+module.exports = "\r\n  <div class=\"dashboard-header\">\r\n    <nav class=\"navbar navbar-expand-lg bg-white fixed-top\">\r\n        <a class=\"navbar-brand\" href=\"index.html\"><img src=\"assets/images/logo.png\" alt=\"\"> Uncle Casino</a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n            <i class=\"fas fa-ellipsis-v\"></i>\r\n        </button>\r\n        <div class=\"collapse navbar-collapse \" id=\"navbarSupportedContent\">\r\n            <ul class=\"navbar-nav ml-auto navbar-right-top\">\r\n                <li class=\"nav-item dropdown nav-user\">\r\n                        <a class=\"nav-link nav-user-img d-flex align-items-center justify-content-between\" href=\"#\" id=\"navbarDropdownMenuLink2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n\t\t\t\t\t\t\t\t<div class=\"nav-user-info\">\r\n                                    <div class=\"row\">\r\n                                        <h3 style=\"margin-right: 40px;\" class=\"mb-0  nav-user-name\">{{userName}}</h3>\r\n                                    </div>\r\n                                </div>\r\n\t\t\t\t\t\t\t\t<i class=\"fas fa-ellipsis-v\"></i></a>\r\n                    <div class=\"dropdown-menu dropdown-menu-right nav-user-dropdown\" aria-labelledby=\"navbarDropdownMenuLink2\">\r\n                        <!-- <a class=\"dropdown-item\" (click)=\"profile()\"><i class=\"fas fa-address-card mr-2\"></i>Profile</a>\r\n                        <a class=\"dropdown-item\" (click)=\"settings()\"><i class=\"fas fa-cogs mr-2\"></i>Settings</a> -->\r\n                        <a class=\"dropdown-item\" (click)=\"logout()\"><i class=\"fas fa-power-off mr-2\"></i>Logout</a>\r\n                        <a class=\"dropdown-item\" (click)=\"openDialogForUpdatePassword('1')\"><i class=\"fas fa-key mr-2\"></i>Change Password</a>\r\n                    </div>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </nav>\r\n</div>"
 
 /***/ })
 
