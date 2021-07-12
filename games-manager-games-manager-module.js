@@ -50429,6 +50429,7 @@ let ViewUserDetailComponent = class ViewUserDetailComponent {
     pageChanged(event) {
         this.pageNo = event;
         this.getUserDetail();
+        this.getAllUserMatchesList();
     }
     /* ...........................completed ........................................ */
     ngOnDestroy() {
